@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet" />
+    <title>Table</title>
+</head>
+<script>
+    function confirmDelete(registroId) {
+        return confirm('¿Estás seguro de que deseas eliminar este registro?');
+    }
+</script>
+<body>
+    <div class="container">
+        <div class="table_header">
+            <h2>Registro: {{ registro._id }}</h2>
+            <div class="actions-container">
+                <a href="{{ url_for('editar_registro', registro_id=registro['_id']) }}">
+                    <i class="bi bi-pencil-square edit-icon"></i>
+                </a>
+                <form id="delete-form-{{ registro._id }}" method="POST" action="{{ url_for('eliminar_registro', registro_id=registro._id) }}" style="display:inline;">
+                    <button style="background-color: transparent;" type="submit" class="delete-button" onclick="return confirmDelete();">
+                        <i class="bi bi-trash delete-icon"></i>
+                    </button>
+                </form>
+                <button id="printButton">
+                    <i class="bi bi-printer"></i> Imprimir PDF
+                </button>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre: {{ registro.nombre_paciente }}</th>
+                    <th>Estado: {{ registro.estado }}</th>
+                    <th>Delegación: {{ registro.delegacion }}</th>
+                    <th>Fecha: {{ registro.fecha }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Compañia de Seguro:</td>
+                    <td>{{ registro.compania_seguro }}</td>
+                    <td>Derechohabiente a:</td>
+                    <td>{{ registro.derechohabiente }}</td>
+                </tr>
+                <tr>
+                    <td>Motivo de Atención::</td>
+                    <td style="color: red;">{{ registro.motivo_atencion }}</td>
+                    <td>Otro:</td>
+                    <td style="color: red;">{{ registro.otromotivo }}</td>
+                </tr>
+                <tr>
+                    <td>Agente Causal:</td>
+                    <td style="color: red;">{{ registro.agente_causal }}</td>
+                    <td>Otro:</td>
+                    <td style="color: red;">{{registro.especifique}}</td>
+                </tr>
+                <tr>
+                    <td>Lugar de Accidente:</td>
+                    <td style="color: red;">{{registro.lugar_ocurrencia}}</td>
+                    <td>Otro:</td>
+                    <td style="color: red;">{{ registro.especifica_otro_lugar }}</td>
+                </tr>
+                <tr>
+                    <td>Edad:</td>
+                    <td>{{ registro.edad}}</td>
+                    <td>Genero:</td>
+                    <td>{{ registro.genero }}</td>
+                </tr>
+                <tr>
+                    <td>Ocupación:</td>
+                    <td>{{ registro.ocupacion }}</td>
+                    <td>Domicilio:</td>
+                    <td>{{ registro.domicilio}} </td>
+                </tr>
+                <tr>
+                    <td>Número Telefónico:</td>
+                    <td>+ {{ registro.numero_telefonico}}</td>
+                    <td>Nombre de Afiliación: </td>
+                    <td>{{ registro.nombre_afiliacion}}</td>
+                </tr>
+                <tr>
+                    <td>Accidente Automovilístico:</td>
+                    <td>{{ registro.accidentes_automovilisticos }}</td>
+                    <td>Sobre la Colisión:</td>
+                    <td>{{ registro.sobre_colision }}</td>
+                </tr>
+                <tr>
+                    <td>Contra Objeto:</td>
+                    <td>{{ registro.contra_objeto }}</td>
+                    <td>Impacto:</td>
+                    <td>{{ registro.impacto }}</td>
+                </tr>
+                <tr>
+                    <td>Hundimiento:</td>
+                    <td>{{ registro.hundimiento }}</td>
+                    <td>Parabrisas:</td>
+                    <td>{{ registro.parabrisas }}</td>
+                </tr>
+                <tr>
+                    <td>Volante:</td>
+                    <td>{{ registro.volante }}</td>
+                    <td>Bolsas de Aire:</td>
+                    <td>{{ registro.bolsa_de_aire}}</td>
+                </tr>
+                <tr>
+                    <td>Cinturón de Seguridad:</td>
+                    <td>{{ registro.cinturon_seguridad }}</td>
+                    <td>Calle:</td>
+                    <td>{{registro.calle}}</td>
+                </tr>
+                <tr>
+                    <td>Entre:</td>
+                    <td>{{registro.entre}}</td>
+                    <td>Condición del Paciente:</td>
+                    <td>{{registro.condicion}}</td>
+                </tr>
+                <tr>
+                    <td>Alcaldía/Municipio:</td>
+                    <td>{{ registro.alcaldia_municipio}}</td>
+                    <td>Lesiones Causadas Por:</td>
+                    <td>{{ registro.lesiones_causadas_por }}</td>
+                </tr>
+                <tr>
+                    <td>Otro Lugar:</td>
+                    <td>{{ registro.especifica_otro_lugar }}</td>
+                    <td>Prestador de Servicios:</td>
+                    <td>{{registro.prestador_servicios}}</td>
+                </tr>
+                <!-- Aquí puedes agregar más filas si es necesario -->
+            </tbody>
+        </table>
+        <div class="image-gallery">
+            <h3>Imágenes del Registro</h3>
+            <div class="images-container">
+                {% for image in registro.imagenes %}
+                <div class="image-item-container">
+                <a href="{{ url_for('image_file', filename=image) }}" target="_blank">
+                    <img src="{{ url_for('image_file', filename=image) }}" alt="Imagen del registro"
+                        style="max-width: 240%; height: auto;" />
+                </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+
+    <script>
+        document.getElementById('printButton').addEventListener('click', function () {
+            var registroId = "{{ registro._id }}";
+            window.location.href = "{{ url_for('generar_pdf', registro_id='') }}" + registroId;
+        });
+    </script>
+</body>
+
+</html>
+
+<style>
+    body {
+        font-family: 'Raleway', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        height: 170vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        width: 80%;
+        max-width: 900px;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .table_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .table_header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    .actions-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .actions-container i {
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .actions-container form,
+    .actions-container button {
+        margin-right: 10px;
+    }
+
+    .table_header button {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .table_header button i {
+        margin-right: 8px;
+    }
+
+    .table_header button:hover {
+        background-color: #0056b3;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    table th,
+    table td {
+        padding: 15px;
+        font-size: 12px;
+        text-align: left;
+    }
+
+    table th {
+        background-color: #6c63ff;
+        color: white;
+        font-weight: normal;
+    }
+
+    table tbody tr:nth-child(even) {
+        background-color: #f8f8f8;
+    }
+
+    table tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .table_footer {
+        margin-top: 20px;
+        font-size: 6px;
+        text-align: right;
+    }
+
+    .edit-icon {
+        color: green;
+    }
+
+    .delete-icon {
+        color: red;
+    }
+
+    .edit-icon:hover {
+        color: darkgreen;
+    }
+
+    .delete-icon:hover {
+        color: darkred;
+    }
+
+    .image-gallery h3 {
+    margin: 0;
+    text-align: start;
+    font-size: 1.2rem;
+}
+
+.image-gallery {
+    text-align: center;
+}
+
+.images-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 130px; /* Espacio entre las imágenes */
+}
+
+.image-item-container {
+    max-width: 20%; /* Ajusta este valor según sea necesario */
+}
+
+.image-item {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
+    height: auto;
+}
+
+.image-item-container img {
+    max-width: 200px;
+    max-height: 150px;
+    object-fit: cover;
+    
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+</style>

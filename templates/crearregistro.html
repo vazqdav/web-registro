@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="/static/css/nuevoregistro.css">
+    <link rel="icon" href="https://acapulco.gob.mx/wp-content/uploads/2019/04/favicon-300x300.png" sizes="192x192" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Montserrat Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #e6e8ed;
+            color: #666666;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .material-icons-outlined {
+            vertical-align: middle;
+            line-height: 1px;
+        }
+
+        .text-primary {
+            color: #666666;
+        }
+
+        .text-blue {
+            color: #246dec;
+        }
+
+        .text-red {
+            color: #cc3c43;
+        }
+
+        .text-green {
+            color: #367952;
+        }
+
+        .text-orange {
+            color: #f5b74f;
+        }
+
+        .font-weight-bold {
+            font-weight: 600;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 260px 1fr 1fr 1fr;
+            grid-template-rows: 0.2fr 3fr;
+            grid-template-areas:
+                "sidebar header header header"
+                "sidebar main main main";
+            height: 100vh;
+        }
+
+        /* ---------- HEADER ---------- */
+
+        .header {
+            grid-area: header;
+            height: 70px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px 0 30px;
+            box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-icon {
+            display: none;
+        }
+
+        /* ---------- SIDEBAR ---------- */
+
+        #sidebar {
+            grid-area: sidebar;
+            height: 100%;
+            background-color: #21232d;
+            color: #9799ab;
+            overflow-y: auto;
+            transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+        }
+
+        .sidebar-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 20px 20px 20px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title>span {
+            display: none;
+        }
+
+        .sidebar-brand {
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .sidebar-list {
+            padding: 0;
+            margin-top: 15px;
+            list-style-type: none;
+        }
+
+        .sidebar-list-item {
+            padding: 20px 20px 20px 20px;
+        }
+
+        .sidebar-list-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        .sidebar-list-item>a {
+            text-decoration: none;
+            color: #9799ab;
+        }
+
+        .sidebar-responsive {
+            display: inline !important;
+            position: absolute;
+            z-index: 12 !important;
+        }
+
+        /* ---------- MAIN ---------- */
+
+        .main-container {
+            grid-area: main;
+            background-color: #e6dfdf;
+            overflow-y: auto;
+            padding: 20px 20px;
+        }
+
+        .main-title {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .main-title>p {
+            font-size: 20px;
+        }
+
+        .main-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 25px;
+            background-color: #ffffff;
+            box-sizing: border-box;
+            border: 1px solid #d2d2d3;
+            border-radius: 5px;
+            box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:first-child {
+            border-left: 7px solid #246dec;
+        }
+
+        .card:nth-child(2) {
+            border-left: 7px solid #f5b74f;
+        }
+
+        .card:nth-child(3) {
+            border-left: 7px solid #367952;
+        }
+
+        .card:nth-child(4) {
+            border-left: 7px solid #cc3c43;
+        }
+
+        .card-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-inner>p {
+            font-size: 18px;
+        }
+
+        .card-inner>span {
+            font-size: 35px;
+        }
+
+        /* ---------- PROJECT ITEM ---------- */
+
+        .project-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 15px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-row img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .title-row h3 {
+            margin: 5px 0;
+            font-size: 18px;
+            color: #333333;
+        }
+
+        .links {
+            display: flex;
+            align-items: center;
+        }
+
+        .links a {
+            margin-left: 5px;
+            font-size: 14px;
+            color: #666666;
+            text-decoration: none;
+        }
+
+        .desc-row p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .progress-row {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .value-label {
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .footer-row .days {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-row .days i {
+            margin-right: 5px;
+        }
+
+        .footer-row .users img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        /* ---------- SCROLLBARS ---------- */
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px #a5aaad;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #4f35a1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #a5aaad;
+        }
+
+        /* ---------- MEDIA QUERIES ---------- */
+
+        /* Medium <= 992px */
+        @media screen and (max-width: 992px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: 0.2fr 3fr;
+                grid-template-areas:
+                    "header"
+                    "main";
+            }
+
+            #sidebar {
+                display: none;
+            }
+
+            .menu-icon {
+                display: inline;
+            }
+
+            .sidebar-title>span {
+                display: inline;
+            }
+        }
+
+        /* Small <= 768px */
+        @media screen and (max-width: 768px) {
+            .main-cards {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-bottom: 0;
+            }
+
+            .charts {
+                grid-template-columns: 1fr;
+                margin-top: 30px;
+            }
+        }
+
+        /* Extra Small <= 576px */
+        @media screen and (max-width: 576px) {
+            .header-left {
+                display: none;
+            }
+        }
+
+        .header-right a {
+            color: #5f5f5f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-container">
+
+        <!-- Header -->
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                
+            </div>
+            <div class="header-left">
+
+            </div>
+            <div class="header-right">
+
+                <a class="" href="/perfil">
+                    <span style="color:#4d4c4c;" class="material-icons-outlined">account_circle</span>
+                </a>
+            </div>
+        </header>
+        <!-- End Header -->
+
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">inventory</span> CAPTA Dashboard
+                </div>
+                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+            </div>
+
+            <ul class="sidebar-list">
+                <li class="sidebar-list-item">
+                    <a href="/dashboard" target="">
+                        <span class="material-icons-outlined">dashboard</span> Dashboard
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="/mostrar_registros" target="">
+                        <span class="material-icons-outlined">inventory_2</span> Registros
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="/guardar_registro" target="">
+                        <span class="material-icons-outlined">fact_check</span> Nuevo Registro
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="/graficos" target="">
+                        <span class="material-icons-outlined">poll</span> Graficar
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="/historial" target="">
+                        <span class="material-icons-outlined">history</span> Historial
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="/">
+                        <span class="material-icons-outlined">logout</span> Cerrar Sesión
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <!-- End Sidebar -->
+
+        <!-- Main -->
+        <main class="main-container">
+            <div class="main-title">
+                <p class="font-weight-bold">FORMULARIO</p>
+            </div>
+
+            <div>
+
+                <div class="container">
+                    <header>Registro Prehospitalario</header>
+                    <form id="multiSectionForm" method="POST" action="{{ url_for('guardar_registro') }}"
+                        enctype="multipart/form-data">
+                        <!-- Sección 1 -->
+                        <div class="form active">
+                            <div class="details personal">
+                                <span class="title">Detalles de Servicio</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Estado</label>
+                                        <input type="text" name="estado" placeholder="Ingresa el Estado">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Delegación</label>
+                                        <input type="text" name="delegacion" placeholder="Ingresa la Delegación">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Fecha</label>
+                                        <input type="date" name="fecha" placeholder="Ingresa la Fecha" required>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Dia de la Semana</label>
+                                        <input type="text" name="dia_semana" placeholder="Ingresa la Asignación">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Motivo de la Atención</label>
+                                        <select name="motivo_atencion" required>
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="Enfermedad">Enfermedad</option>
+                                            <option value="Traumatismo">Traumatismo</option>
+                                            <option value="Ginecobstetrico">Ginecobstetrico</option>
+                                            <option value="Traslado">Traslado</option>
+                                            <option value="Serv. Especial">Serv. Especial</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Otro Motivo</label>
+                                        <input name="otromotivo" type="text" placeholder="Especifica otro motivo">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="details ID">
+                                <span class="title">Cronometria</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Hora de Llamada</label>
+                                        <input name="hora_llamada" type="time" placeholder="Ingresa la hora de llamada">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Hora de Despacho</label>
+                                        <input name="hora_despacho" type="time"
+                                            placeholder="Ingresa la hora de despacho">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Hora de Arribo</label>
+                                        <input type="time" name="hora_arribo" placeholder="Enter issued authority">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Hora de Traslado</label>
+                                        <input type="time" name="hora_traslado" placeholder="Enter issued state">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Hora Hospital</label>
+                                        <input type="time" name="hora_hospital" placeholder="Enter your issued date">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Hora Disponible</label>
+                                        <input type="time" name="hora_disponible" placeholder="Enter expiry date">
+                                    </div>
+                                </div>
+                                <button type="button" class="nextBtn" onclick="nextSection()">
+                                    <span class="btnText">Next</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Sección 2 -->
+                        <div class="form">
+                            <div class="details education">
+                                <span class="title">Ubicacion del Servicio</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Motivo</label>
+                                        <select name="motivo_ubicacion">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="Enfermedad">Enfermedad</option>
+                                            <option value="Traumatismo">Traumatismo</option>
+                                            <option value="Ginecobstetrico">Ginecobstetrico</option>
+                                            <option value="Traslado">Traslado</option>
+                                            <option value="Serv. Especial">Serv. Especial</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Calle</label>
+                                        <input type="text" name="calle" placeholder="Enter institution">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Entre</label>
+                                        <input type="text" name="entre" placeholder="Enter year of graduation">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Colonia/Comunidad</label>
+                                        <input type="text" name="colonia_comunidad" placeholder="Enter field of study">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Alcaldía/Municipio</label>
+                                        <input type="text" name="alcaldia_municipio"
+                                            placeholder="Enter grade/percentage">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Lugar de Ocurrencia</label>
+                                        <select name="lugar_ocurrencia">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="Hogar">Hogar</option>
+                                            <option value="Vía Pública">Vía Pública</option>
+                                            <option value="Trabajo">Trabajo</option>
+                                            <option value="Escuela">Escuela</option>
+                                            <option value="Recreación y Deporte">Recreación y Deporte</option>
+                                            <option value="Transporte Público">Transporte Público</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="details ID">
+                                    <span class="title">Control</span>
+                                    <div class="fields">
+                                        <div class="input-field">
+                                            <label>Especifica otro lugar</label>
+                                            <input type="text" name="especifica_otro_lugar" placeholder="Enter ID type">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Número de Ambulancia</label>
+                                            <input type="number" name="numero_ambulancia" placeholder="Enter ID number">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Operador</label>
+                                            <input type="text" name="operador" placeholder="Enter issued authority">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Prestador de Servicios</label>
+                                            <input type="text" name="prestador_servicios"
+                                                placeholder="Enter issued state">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Asignación</label>
+                                            <input type="text" id="asignacion" name="asignacion"
+                                                placeholder="Enter expiry date">
+                                        </div>
+                                        <div class="input-field">
+
+                                        </div>
+                                        <div class="input-field">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <button type="button" class="backBtn" onclick="prevSection()">
+                                    <i class="uil uil-navigator"></i>
+                                    <span class="btnText">Back</span>
+                                </button>
+                                <button type="button" class="nextBtn" onclick="nextSection()">
+                                    <span class="btnText">Next</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Sección 6 -->
+                        <div class="form">
+                            <div class="details travel">
+                                <span class="title">Datos del Paciente</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Nombre o Media Afiliación</label>
+                                        <input type="text" name="nombre_afiliacion" placeholder="Enter passport number">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Género</label>
+                                        <select name="genero">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="Hombre">Hombre</option>
+                                            <option value="Mujer">Mujer</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Edad</label>
+                                        <input type="number" name="edad" placeholder="Enter issued date">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Meses</label>
+                                        <input type="number" name="meses" placeholder="Enter expiry date">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Domicilio</label>
+                                        <input type="text" name="domicilio" placeholder="Enter visa type">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Colonia/Comunidad</label>
+                                        <input type="text" name="colonia_comunidad" placeholder="Enter visa number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="details ID">
+                                <span class="title">Datos Personales</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Numero Telefonico</label>
+                                        <input type="tel" name="numero_telefonico" placeholder="Enter ID type">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Ocupación</label>
+                                        <input type="number" name="ocupacion" placeholder="Enter ID number">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Derechohabiente a</label>
+                                        <input type="text" name="derechohabiente" placeholder="Enter issued authority">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Compañía Seguro Gastos Médicos</label>
+                                        <input type="text" name="compania_seguro" placeholder="Enter issued state">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Nombre del Paciente</label>
+                                        <input type="text" name="nombre_paciente" placeholder="Nombre completo">
+                                    </div>
+                                    <div class="input-field">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <button type="button" class="backBtn" onclick="prevSection()">
+                                    <i class="uil uil-navigator"></i>
+                                    <span class="btnText">Back</span>
+                                </button>
+                                <button type="button" class="nextBtn" onclick="nextSection()">
+                                    <span class="btnText">Next</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!--Parte 3-->
+                        <div class="form">
+                            <div class="details travel">
+                                <span class="title">Causa Traumática</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Agente Causal</label>
+                                        <select name="agente_causal">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="Arma">Arma</option>
+                                            <option value="Juguete">Juguete</option>
+                                            <option value="Automotor">Automotor</option>
+                                            <option value="Bicicleta/Scooter">Bicicleta/Scooter</option>
+                                            <option value="Producto Biologico/Quimico">Producto Biologico/Quimico
+                                            </option>
+                                            <option value="Maquinaria">Maquinaria</option>
+                                            <option value="Herramienta">Herramienta</option>
+                                            <option value="Fuego">Fuego</option>
+                                            <option value="Sustancia/Objeto Caliente">Sustancia/Objeto Caliente</option>
+                                            <option value="Sustancia Toxica">Sustancia Toxica</option>
+                                            <option value="Electricidad">Electricidad</option>
+                                            <option value="Explosion">Explosion</option>
+                                            <option value="Ser Humano">Ser Humano</option>
+                                            <option value="Animal">Animal</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Especifique</label>
+                                        <input type="text" name="especifique" placeholder="Enter issued country">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Lesiones causadas por</label>
+                                        <input type="text" name="lesiones_causadas_por" placeholder="Enter issued date">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Accidentes Automovilísticos</label>
+                                        <select name="accidentes_automovilisticos">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="Colision">Colision</option>
+                                            <option value="Automotor">Automotor</option>
+                                            <option value="Volcadura">Volcadura</option>
+                                            <option value="Bicicleta">Bicicleta</option>
+                                            <option value="Motocicleta">Motocicleta</option>
+                                            <option value="Maquinaria">Maquinaria</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Sobre la Colision</label>
+                                        <input type="text" name="sobre_colision" placeholder="Enter visa type">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Contra Objeto</label>
+                                        <select name="contra_objeto">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="Fijo">Fijo</option>
+                                            <option value="En movimiento">En movimiento</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="details ID">
+                                <span class="title">Datos del Accidente</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Impacto</label>
+                                        <select name="impacto">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="Frontal">Frontal</option>
+                                            <option value="Lateral">Lateral</option>
+                                            <option value="Posterior">Posterior</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Hundimiento</label>
+                                        <input type="text" name="hundimiento" placeholder="Enter ID number">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Parabrisas</label>
+                                        <select name="parabrisas">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="Integro">Integro</option>
+                                            <option value="Roto/Doblado">Roto/Doblado</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Volante</label>
+                                        <select name="volante">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="Integro">Integro</option>
+                                            <option value="Roto/Doblado">Roto/Doblado</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Bolsa de Aire</label>
+                                        <select name="bolsa_de_aire">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Cinturon de Seguridad</label>
+                                        <select name="cinturon_seguridad">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                            <option value="Roto">Roto</option>
+                                            <option value="Eyectado">Eyectado</option>
+                                            <option value="Prensado">Prensado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <button type="button" class="backBtn" onclick="prevSection()">
+                                    <i class="uil uil-navigator"></i>
+                                    <span class="btnText">Back</span>
+                                </button>
+                                <button type="button" class="nextBtn" onclick="nextSection()">
+                                    <span class="btnText">Next</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!--Parte 4-->
+                        <div class="form">
+                            <div class="details education">
+                                <span class="title">Datos de la Madre</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Gesta</label>
+                                        <input type="text" name="gesta" placeholder="Enter ID number">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Cesarea</label>
+                                        <input type="text" name="cesarea" placeholder="Enter institution">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Para</label>
+                                        <input type="text" name="para" placeholder="Enter year of graduation">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Aborto</label>
+                                        <input type="text" name="aborto" placeholder="Enter field of study">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Semanas de Gestación</label>
+                                        <input type="text" name="semanas_gestacion"
+                                            placeholder="Enter grade/percentage">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Fecha Probable del Parto</label>
+                                        <input type="date" name="fecha_probable_parto"
+                                            placeholder="Enter grade/percentage">
+                                    </div>
+                                </div>
+                                <div class="details ID">
+                                    <span class="title">Parto</span>
+                                    <div class="fields">
+                                        <div class="input-field">
+                                            <label>Fum</label>
+                                            <input type="text" name="fum" placeholder="Enter ID type">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Hora de Inicio de Contracciones</label>
+                                            <input type="time" name="hora_inicio_contracciones"
+                                                placeholder="Enter ID number">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Duración</label>
+                                            <input type="text" name="duracion" placeholder="Enter issued authority">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Frecuencia</label>
+                                            <input type="text" name="frecuencia" placeholder="Enter issued state">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Membranas</label>
+                                            <input type="text" name="membranas" placeholder="Enter issued state">
+                                        </div>
+                                        <div class="input-field">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <button type="button" class="backBtn" onclick="prevSection()">
+                                    <i class="uil uil-navigator"></i>
+                                    <span class="btnText">Back</span>
+                                </button>
+                                <button type="button" class="nextBtn" onclick="nextSection()">
+                                    <span class="btnText">Next</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form">
+                            <div class="details education">
+                                <span class="title">Datos post Parto</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Hora de nacimiento</label>
+                                        <input type="time" name="hora_nacimiento" placeholder="Enter ID number">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Lugar</label>
+                                        <input type="text" name="lugar" placeholder="Enter institution">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Paciente Expulsada</label>
+                                        <input type="text" name="paciente_expulsada"
+                                            placeholder="Enter year of graduation">
+                                    </div>
+                                    <div class="input-field">
+                                        <label> Datos del Recien Nacido</label>
+                                        <select name="datos_recien_nacido">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="Vivo">Vivo</option>
+                                            <option value="Muerto">Muerto</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Genero</label>
+                                        <select name="genero">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Femenino">Femenino</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+
+                                    </div>
+                                </div>
+                                <div class="details ID">
+                                    <span class="title"> Recien Nacido</span>
+                                    <div class="fields">
+                                        <div class="input-field">
+                                            <label>Apgar 1</label>
+                                            <input type="time" name="apgar_1" placeholder="Enter ID number">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Apgar 2</label>
+                                            <input type="time" name="apgar_2" placeholder="Enter ID number">
+                                        </div>
+                                        <div class="input-field">
+
+                                        </div>
+                                        <div class="input-field">
+
+                                        </div>
+                                        <div class="input-field">
+
+                                        </div>
+                                        <div class="input-field">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <button type="button" class="backBtn" onclick="prevSection()">
+                                    <i class="uil uil-navigator"></i>
+                                    <span class="btnText">Back</span>
+                                </button>
+                                <button type="button" class="nextBtn" onclick="nextSection()">
+                                    <span class="btnText">Next</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!--Parte 5-->
+                        <div class="form">
+                            <div class="details travel">
+                                <span class="title">Evaluación Inicial</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Nivel de Conciencia</label>
+                                        <select name="nivel_conciencia">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="alerta">Alerta</option>
+                                            <option value="respuesta_verbal">Respuesta a estimulación verbal</option>
+                                            <option value="respuesta_doloso">Respuesta a estímulo doloroso</option>
+                                            <option value="inconsciente">Inconsciente</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Via Aerea</label>
+                                        <select name="via_aerea">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="permeable">Permeable</option>
+                                            <option value="comprometida">Comprometida</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Reflejo de Deglusion</label>
+                                        <select name="reflejo_deglusion">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="ausente">Ausente</option>
+                                            <option value="presente">Presente</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Observación</label>
+                                        <select name="observacion">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="automatismo_regular">Automatismo regular</option>
+                                            <option value="automatismo_irregular">Automatismo irregular</option>
+                                            <option value="ventilacion_rapida">Ventilación rápida</option>
+                                            <option value="ventilacion_superficial">Ventilación superficial</option>
+                                            <option value="apnea">Apnea</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Auscultación</label>
+                                        <select name="auscultacion">
+                                            <option style="font-size: 12px;" disabled selected>Selecciona una Opcion
+                                            </option>
+                                            <option value="ruidos_respiratorios_normales">Ruidos respiratorios normales
+                                            </option>
+                                            <option value="ruidos_respiratorios_disminuidos">Ruidos respiratorios
+                                                disminuidos</option>
+                                            <option value="ruidos_respiratorios_ausentes">Ruidos respiratorios ausentes
+                                            </option>
+                                            <option value="estertores_sibilancias">Estertores/sibilancias</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Hemitorax</label>
+                                        <select name="hemitorax">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="derecho">Derecho</option>
+                                            <option value="izquierdo">Izquierdo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="details ID">
+                                <span class="title">Circulación</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Sitio</label>
+                                        <select name="sitio">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="apical">Apical</option>
+                                            <option value="base">Base</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Presencia de pulsos</label>
+                                        <select name="presencia_pulsos">
+                                            <option style="font-size: 12px;" disabled selected>Selecciona una Opcion
+                                            </option>
+                                            <option value="carotideo">Carotideo</option>
+                                            <option value="radial">Radial</option>
+                                            <option value="paro_cardiorrespiratorio">Paro cardiorrespiratorio</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Calidad</label>
+                                        <select name="calidad">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="normal">Normal</option>
+                                            <option value="rapido">Rápido</option>
+                                            <option value="lento">Lento</option>
+                                            <option value="ritmico">Rítmico</option>
+                                            <option value="arritmico">Arrítmico</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Piel</label>
+                                        <select name="piel">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="normal">Normal</option>
+                                            <option value="palida">Pálida</option>
+                                            <option value="cianotica">Cianótica</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Caracteristicas</label>
+                                        <select name="caracteristicas">
+                                            <option disabled selected>Selecciona una Opcion
+                                            </option>
+                                            <option value="normal">Normal</option>
+                                            <option value="caliente">Caliente</option>
+                                            <option value="fria">Fría</option>
+                                            <option value="diaforesis">Diaforesis</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <button type="button" class="backBtn" onclick="prevSection()">
+                                    <i class="uil uil-navigator"></i>
+                                    <span class="btnText">Back</span>
+                                </button>
+                                <button type="button" class="nextBtn" onclick="nextSection()">
+                                    <span class="btnText">Next</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!--Parte 6-->
+                        <div class="form">
+                            <div class="details travel">
+                                <span class="title">Evaluación Secundaria</span>
+                                <div class="fields">
+                                    <div class="input-field2">
+                                        <div class="checkbox-group2">
+                                            <!-- Checkbox Items -->
+                                            <div class="checkbox-item2">
+                                                <input type="checkbox" id="deformity1" name="deformity_levels"
+                                                    value="1">
+                                                <label for="deformity1">1</label>
+                                            </div>
+                                            <div class="checkbox-item2">
+                                                <input type="checkbox" id="deformity2" name="deformity_levels"
+                                                    value="2">
+                                                <label for="deformity2">2</label>
+                                            </div>
+                                            <div class="checkbox-item2">
+                                                <input type="checkbox" id="deformity3" name="deformity_levels"
+                                                    value="3">
+                                                <label for="deformity3">3</label>
+                                            </div>
+                                            <div class="checkbox-item2">
+                                                <input type="checkbox" id="deformity4" name="deformity_levels"
+                                                    value="4">
+                                                <label for="deformity4">4</label>
+                                            </div>
+                                            <div class="checkbox-item2">
+                                                <input type="checkbox" id="deformity5" name="deformity_levels"
+                                                    value="5">
+                                                <label for="deformity5">5</label>
+                                            </div>
+                                        </div>
+                                        <div class="image-container">
+                                            <img src="/static/img/pupilas.jpeg"
+                                                alt="Descripción de la imagen de pupilas">
+                                        </div>
+                                        <div class="ima">
+                                            <img style="margin-bottom: 400px;" src="/static/img/human.png"
+                                                alt="Imagen de cuerpo humano">
+                                        </div>
+                                    </div>
+                                    <!-- Placeholder input fields (optional) -->
+                                    <div class="input-field"></div>
+                                    <div class="input-field"></div>
+                                    <div class="input-field"></div>
+                                    <div class="input-field"></div>
+                                    <div class="input-field"></div>
+                                </div>
+                            </div>
+                            <div class="details ID">
+                                <span class="title">Exploración Física</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Zonas de Lesión</label>
+                                        <div class="checkbox-group">
+                                            <!-- Column 1 -->
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="deformities" name="lesion_zones"
+                                                    value="deformities">
+                                                <label for="deformities">Deformidades</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="contusions" name="lesion_zones"
+                                                    value="contusions">
+                                                <label for="contusions">Contusiones</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="abrasions" name="lesion_zones"
+                                                    value="abrasions">
+                                                <label for="abrasions">Abrasiones</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="penetrations" name="lesion_zones"
+                                                    value="penetrations">
+                                                <label for="penetrations">Penetraciones</label>
+                                            </div>
+
+                                            <!-- Column 2 -->
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="paradoxical" name="lesion_zones"
+                                                    value="paradoxical">
+                                                <label for="paradoxical">Movimiento paradójico</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="crepitation" name="lesion_zones"
+                                                    value="crepitation">
+                                                <label for="crepitation">Crepitación</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="wounds" name="lesion_zones" value="wounds">
+                                                <label for="wounds">Heridas</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="fractures" name="lesion_zones"
+                                                    value="fractures">
+                                                <label for="fractures">Fracturas</label>
+                                            </div>
+
+                                            <!-- Column 3 -->
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="subcutaneous" name="lesion_zones"
+                                                    value="subcutaneous">
+                                                <label for="subcutaneous">Énfasis subcutáneo</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="burns" name="lesion_zones" value="burns">
+                                                <label for="burns">Quemaduras</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="lacerations" name="lesion_zones"
+                                                    value="lacerations">
+                                                <label for="lacerations">Laceraciones</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="edema" name="lesion_zones" value="edema">
+                                                <label for="edema">Edema</label>
+                                            </div>
+
+                                            <!-- Column 4 -->
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="sensitivity" name="lesion_zones"
+                                                    value="sensitivity">
+                                                <label for="sensitivity">Alteración de sensibilidad</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="mobility" name="lesion_zones"
+                                                    value="mobility">
+                                                <label for="mobility">Alteración de movilidad</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="pain" name="lesion_zones" value="pain">
+                                                <label for="pain">Dolor</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="implication" name="lesion_zones"
+                                                    value="implication">
+                                                <label for="implication">Imputación</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <button type="button" class="backBtn" onclick="prevSection()">
+                                    <i class="uil uil-navigator"></i>
+                                    <span class="btnText">Back</span>
+                                </button>
+                                <button type="button" class="nextBtn" onclick="nextSection()">
+                                    <span class="btnText">Next</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!--Parte 7-->
+
+                        <div class="form">
+                            <div class="details education">
+                                <span class="title">Signos Vitales y Monitoreo</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label for="">Eventos previos relacionados</label>
+                                        <input type="text" name="eventos_previos">
+                                    </div>
+                                    <div class="input-field">
+                                        <label for="">Hora de última comida</label>
+                                        <input type="text" name="ultima_comida">
+                                    </div>
+                                    <div class="input-field">
+                                        <label for="">Enfermedades y cirugías previas</label>
+                                        <input type="text" name="enfermedades_cirugias">
+                                    </div>
+                                    <div class="input-field">
+                                        <label for="">Medicamentos que está ingiriendo</label>
+                                        <input type="text" name="medicamentos">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Alergias</label>
+                                        <input type="text" name="alergias" placeholder="Ingresa las alergias">
+                                    </div>
+                                    <div class="input-field">
+                                        
+                                    </div>
+                                </div>
+                                <div class="details ID">
+                                    <span class="title"></span>
+                                    <div class="fields">
+                                        
+                                        <div class="input-field">
+                                            
+                                        </div>
+                                        
+                                        
+                                        <div class="input-field">
+                                        
+                                        </div>
+                                        <div class="input-field">
+                                        
+                                        </div>
+                                        <div class="input-field">
+                                        
+                                        </div>
+                                        <div class="input-field">
+                                        
+                                        </div>
+                                        <div class="input-field">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <button type="button" class="backBtn" onclick="prevSection()">
+                                    <i class="uil uil-navigator"></i>
+                                    <span class="btnText">Back</span>
+                                </button>
+                                <button type="button" class="nextBtn" onclick="nextSection()">
+                                    <span class="btnText">Next</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!--pAL OTRO-->
+                        <div class="form">
+                            <div class="details education">
+                                <span class="title">Signos Vitales y Monitoreo</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Hora</label>
+                                        <input type="time" name="hora">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>FR</label>
+                                        <input type="text" name="fr">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>TAS</label>
+                                        <input type="text" name="tas">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>TAD</label>
+                                        <input type="text" name="tad">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>SaQ2</label>
+                                        <input type="text" name="saq2">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>FC</label>
+                                        <input type="text" name="fc">
+                                    </div>
+                                    
+                                </div>
+                                <div class="details ID">
+                                    <span class="title"></span>
+                                    <div class="fields">
+                                        <div class="input-field">
+                                            <label>TEMP</label>
+                                            <input type="text" name="temp">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>GLUC</label>
+                                            <input type="text" name="gluc">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>GLASGOW</label>
+                                            <input type="text" name="glasgow" id="">
+                                        </div>
+                                        <div class="input-field">
+                                            <label for="">TRAUMA SCORE</label>
+                                            <input type="text" name="trauma_score">
+                                        </div>
+                                        <div class="input-field">
+                                            <label for="">EKG</label>
+                                            <input type="text" name="ekg">
+                                        </div>
+                                       
+                                        <div class="input-field">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <button type="button" class="backBtn" onclick="prevSection()">
+                                    <i class="uil uil-navigator"></i>
+                                    <span class="btnText">Back</span>
+                                </button>
+                                <button type="button" class="nextBtn" onclick="nextSection()">
+                                    <span class="btnText">Next</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!--Parte 7-->
+                        <div class="form">
+                            <div class="details travel">
+                                <span class="title">Condición de Paciente</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Condición</label>
+                                        <select name="condicion">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="critico">Crítico</option>
+                                            <option value="no_critico">No Crítico</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Estabilidad</label>
+                                        <select name="estabilidad">
+                                            <option disabled selected>Selecciona una Opción</option>
+                                            <option value="permeable">Estable</option>
+                                            <option value="comprometida">Inestable</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Prioridad</label>
+                                        <select name="prioridad">
+                                            <option style="font-size: 12px;" disabled selected>Selecciona una Opcion
+                                            </option>
+                                            <option value="amarillo">Amarillo</option>
+                                            <option value="rojo">Rojo</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Prioridad Secundaria</label>
+                                        <select name="prioridad_secundaria">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="verde">Verde</option>
+                                            <option value="negro">Negro</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Vía Aérea</label>
+                                        <select name="via_aerea">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="aspiracion">Aspiración</option>
+                                            <option value="canula1">Cánula-</option>
+                                            <option value="canula2">Cánula-</option>
+                                            <option value="intubacion1">Intubación-</option>
+                                            <option value="intubacion2">Intubación-</option>
+                                            <option value="manual">Manual</option>
+                                            <option value="mascarilla">Mascarilla-</option>
+                                            <option value="crico">Crico-</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Control Cervical</label>
+                                        <select name="control_cervical">
+                                            <option style="font-size: 12px;" disabled selected>Selecciona una Opcion
+                                            </option>
+                                            <option value="manual">Manual</option>
+                                            <option value="collarin_rigido">Collarín rígido</option>
+                                            <option value="collarin_blando">Collarín blando</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="details ID">
+                                <span class="title">Otros Datos</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Asistencia ventilatoria</label>
+                                        <select name="asistencia_ventilatoria">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="balon_valbula_mascarilla">Balón válvula mascarilla</option>
+                                            <option value="valvula_de_demanda">Válvula de demanda</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Suplemento de oxígeno</label>
+                                        <select name="suplemento_oxigeno">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="puntas_nasales">Puntas nasales</option>
+                                            <option value="mascarilla_simple">Mascarilla simple</option>
+                                            <option value="mascarilla_con_reservorio">Mascarilla con reservorio</option>
+                                            <option value="mascarilla_venturi">Mascarilla Venturi</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Ventilador automático</label>
+                                        <input type="text" id="frecuencia" name="frecuencia" class="ventilador-input">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Volumen</label>
+                                        <input type="text" id="volumen" name="volumen" class="ventilador-input">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>LTS X MIN</label>
+                                        <select name="lts_x_min">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="hiperventilacion">Hiperventilación</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Hiperventilación</label>
+                                        <select name="hiperventilacion">
+                                            <option style="font-size: 12px;" disabled selected>Selecciona una Opcion
+                                            </option>
+                                            <option value="descompresion_pleural_agua">Descompresión pleural con agua
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <button type="button" class="backBtn" onclick="prevSection()">
+                                    <i class="uil uil-navigator"></i>
+                                    <span class="btnText">Back</span>
+                                </button>
+                                <button type="button" class="nextBtn" onclick="nextSection()">
+                                    <span class="btnText">Next</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <!--Parte 8-->
+                        <div class="form">
+                            <div class="details travel">
+                                <span class="title">Condición de Paciente</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Hemitorax</label>
+                                        <select name="hemitorax">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="hemitorax_derecho">Hemitorax derecho</option>
+                                            <option value="hemitorax_izquierdo">Hemitorax izquierdo</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Vías venosas/Línea IV</label>
+                                        <input type="text" id="linea_iv" name="linea_iv" class="venosa-input">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Catéter</label>
+                                        <input type="text" name="cateter" id="cateter">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Sitio de aplicación</label>
+                                        <select name="sitio_aplicacion" id="sitio_aplicacion">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="mano">Mano</option>
+                                            <option value="pliegue_anticubetal">Pliegue anticubital</option>
+                                            <option value="intraosea">Intraósea</option>
+                                            <option value="otra">Otra</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Tipo de soluciones</label>
+                                        <select name="tipo_soluciones" id="tipo_soluciones">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="hartmann">Hartmann</option>
+                                            <option value="nacl_09">NaCl 0,9%</option>
+                                            <option value="mixta">Mixta</option>
+                                            <option value="glucosa_5">Glucosa 5%</option>
+                                            <option value="otra">Otra</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Especifique</label>
+                                        <input type="text" name="especifique" id="especifique">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="details ID">
+                                <span class="title">Otros Datos</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Tipo de RCP</label>
+                                        <select name="tipo_rcp" id="tipo_rcp">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="rcp_basica">RCP Básica</option>
+                                            <option value="rcp_avanzada">RCP Avanzada</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Hora</label>
+                                        <input type="time" name="hora" id="especifique">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Vía Administración</label>
+                                        <input type="text" name="via_Administracion">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Dosis</label>
+                                        <input type="text" name="dosis" id="especifique">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Medicamento</label>
+                                        <input type="text" name="medicamento" id="especifique">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Terapia Eléctrica</label>
+                                        <input type="text" name="terapia_electrica">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <button type="button" class="backBtn" onclick="prevSection()">
+                                    <i class="uil uil-navigator"></i>
+                                    <span class="btnText">Back</span>
+                                </button>
+                                <button type="button" class="nextBtn" onclick="nextSection()">
+                                    <span class="btnText">Next</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!--Parte 9-->
+                        <div class="form">
+                            <div class="details travel">
+                                <span class="title">Datos Adicionales</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Empaquetamiento</label>
+                                        <select name="empaquetamiento">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="inmovilizacion_extremidades">Inmovilización de extremidades
+                                            </option>
+                                            <option value="empaquetamiento">Empaquetamiento</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Curación y Vendaje</label>
+                                        <select name="curacion_vendaje">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="curacion">Curación</option>
+                                            <option value="bendaje">Vendaje</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Subsecuente</label>
+                                        <input type="text" name="subsecuente" placeholder="Enter favorite destination">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>1° Vez</label>
+                                        <input type="text" name="1vez" placeholder="Enter favorite cuisine">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Atropellado</label>
+                                        <select name="atropellado">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="motocicleta">Motocicleta</option>
+                                            <option value="automotor">Automotor</option>
+                                            <option value="bicicleta">Bicicleta</option>
+                                            <option value="maquinaria">Maquinaria</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="input-field">
+                                        <label>Causa Clinica</label>
+                                        <select name="causa_clinica">
+                                            <option disabled selected>Selecciona una Opcion</option>
+                                            <option value="neurologia">Neurología</option>
+                                            <option value="cardiovascular">Cardiovascular</option>
+                                            <option value="respiratorio">Respiratorio</option>
+                                            <option value="metabolico">Metabólico</option>
+                                            <option value="digestiva">Digestiva</option>
+                                            <option value="urogenital">Urogenital</option>
+                                            <option value="ginecobstetrico">Ginecoobstétrico</option>
+                                            <option value="cognitivo_emocional">Cognitivo/emocional</option>
+                                            <option value="musculo_esqueletico">Musculo esquelético</option>
+                                            <option value="infecciosa">Infecciosa</option>
+                                            <option value="oncologia">Oncológico</option>
+                                            <option value="otro">Otro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="details ID">
+                                <span class="title">Otros Datos</span>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Especifique</label>
+                                        <input type="text" name="especifiqueotros" id="especifiqueotros">
+                                    </div>
+                                    <div class="input-field">
+                                        <label for="imagenes">Selecciona las imágenes:</label>
+                                        <input style="border: none;" type="file" id="imagenes" name="imagenes" multiple
+                                            accept="image/*" required><br>
+                                    </div>
+                                    <div class="input-field"></div>
+                                    <div class="input-field"></div>
+                                    <div class="input-field"></div>
+                                    <div class="input-field"></div>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <button type="button" class="backBtn" onclick="prevSection()">
+                                    <i class="uil uil-navigator"></i>
+                                    <span class="btnText">Back</span>
+                                </button>
+                                <button type="submit" class="submit">
+                                    <span class="btnText">Submit</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Sección 7 -->
+                    </form>
+                </div>
+
+            </div>
+        </main>
+        <link rel="stylesheet" href="/static/css/perfil.css">
+        <!-- End Main -->
+    </div>
+</body>
+
+</html>
+<script>
+    let currentSection = 0;
+    const sections = document.querySelectorAll('.form');
+
+    function showSection(index) {
+        sections.forEach((section, i) => {
+            section.classList.toggle('active', i === index);
+        });
+    }
+
+    function nextSection() {
+        if (currentSection < sections.length - 1) {
+            currentSection++;
+            showSection(currentSection);
+        }
+    }
+
+    function prevSection() {
+        if (currentSection > 0) {
+            currentSection--;
+            showSection(currentSection);
+        }
+    }
+
+    // Inicialmente mostrar la primera sección
+    showSection(currentSection);
+</script>
+
+<style>
+    /* Estilos para la tabla */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Estilos para las celdas de la tabla */
+    th,
+    td {
+        border: 1px solid #dddddd;
+        text-align: center;
+        /* Centramos el texto en las celdas */
+        padding: 10px;
+    }
+
+    /* Estilos para las cabeceras de la tabla */
+    th {
+        background-color: #f2f2f2;
+        /* Fondo gris claro para las cabeceras */
+        font-weight: bold;
+        /* Negrita para las cabeceras */
+    }
+
+    /* Estilo para filas alternas */
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+        /* Fondo gris muy claro para filas pares */
+    }
+
+    /* Ajustar ancho de las columnas según su contenido */
+    th,
+    td {
+        min-width: 50px;
+        /* Ancho mínimo de las celdas */
+    }
+
+    td {
+        color: #333;
+        /* Color de texto en celdas */
+    }
+
+    thead {
+        font-size: 16px;
+        /* Tamaño de fuente para el encabezado */
+    }
+
+    tbody {
+        font-size: 14px;
+        /* Tamaño de fuente para el cuerpo */
+    }
+</style>
+<style>
+    .input-field {
+        margin-bottom: 20px;
+    }
+
+    .checkbox-group {
+        display: grid;
+        /* Usa grid layout */
+        grid-template-columns: repeat(8, 3fr);
+        /* 4 columnas */
+        gap: 10px;
+        /* Espacio entre los checkboxes */
+    }
+
+    .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        /* Espacio entre el checkbox y la etiqueta */
+    }
+
+    .input-field2 {
+        margin-bottom: 20px;
+    }
+
+    .checkbox-group2 {
+        display: grid;
+        /* Usa grid layout */
+        grid-template-columns: repeat(1, 2fr);
+        /* 4 columnas */
+        gap: 10px;
+        /* Espacio entre los checkboxes */
+    }
+
+    .checkbox-item2 {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        /* Espacio entre el checkbox y la etiqueta */
+    }
+
+    /*IMg*/
+    .image-container {
+        display: flex;
+        position: absolute;
+        margin-left: 70px;
+        top: 0;
+        margin-top: 30px;
+    }
+
+    .image-container img {
+        max-width: 150px;
+        /* Ajusta el tamaño de la imagen según sea necesario */
+        height: auto;
+    }
+
+    .ima img {
+        display: flex;
+        position: absolute;
+        margin-left: 390px;
+        top: 0;
+        margin-top: 2px;
+    }
+
+    .ima img {
+        width: 350px;
+        height: auto;
+    }
+</style>

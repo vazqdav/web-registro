@@ -1,0 +1,158 @@
+/* estilos.css */
+
+/* Estilos generales del cuerpo */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5; /* Fondo suave para contraste */
+}
+
+/* Contenedor del formulario */
+.container {
+    max-width: 500px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centrar el contenedor horizontalmente */
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco para el formulario */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    margin-top: 20px;
+    color: #333;
+}
+
+/* Estilos del formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre los campos */
+}
+
+/* Etiquetas */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"] {
+    width: 86%; /* Ocupa todo el ancho del contenedor */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Campos select */
+select {
+    width: 86%; /* Ocupa todo el ancho del contenedor */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #ffffff; /* Fondo blanco para el select */
+    font-size: 16px; /* Tamaño de fuente para el select */
+}
+
+/* Botón de envío */
+button {
+    padding: 10px 15px;
+    background-color: #007bff; /* Color de fondo del botón */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #0056b3; /* Color de fondo en hover */
+}
+
+/* Estilos para la sección de Signos Vitales y Monitoreo */
+.vital-signs-monitoring .input-field {
+    margin-bottom: 20px; /* Espacio entre los campos */
+}
+
+.vital-signs-monitoring .input-field label {
+    font-weight: bold;
+    margin-bottom: 8px; /* Espacio entre la etiqueta y el campo de entrada */
+    color: #555;
+}
+
+.vital-signs-monitoring input[type="text"] {
+    width: 100%; /* Asegura que el campo ocupe todo el ancho disponible */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #ffffff; /* Fondo blanco para los inputs */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+/* Ajuste para hacer la sección más adaptable */
+@media (max-width: 768px) {
+    .vital-signs-monitoring .input-field {
+        margin-bottom: 15px; /* Espacio entre los campos en pantallas más pequeñas */
+    }
+}
+
+/* Estilo para el título de la sección Signos Vitales y Monitoreo */
+.title {
+    font-size: 24px; /* Tamaño de fuente más grande */
+    font-weight: bold; /* Negrita */
+    color: #333; /* Color del texto (puedes ajustarlo según el diseño) */
+    margin-bottom: 20px; /* Espacio debajo del título */
+    display: block; /* Asegura que el título ocupe toda la línea */
+}
+
+
+/* Estilo para el título de las secciones */
+.title {
+    display: block;
+    font-size: 20px; /* Tamaño de fuente más grande */
+    font-weight: bold; /* Negrita */
+    color: #333; /* Color del texto */
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+/* Estilo para los campos en las secciones */
+.fields {
+    margin-bottom: 30px; /* Espacio debajo del contenedor de campos */
+}
+
+/* Estilo para los campos de entrada */
+.input-field {
+    margin-bottom: 20px; /* Espacio debajo de cada campo de entrada */
+}
+
+/* Estilo para los campos select */
+select {
+    width: 100%; /* Asegura que el select ocupe todo el ancho disponible */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #ffffff; /* Fondo blanco para el select */
+    font-size: 16px; /* Tamaño de fuente para el select */
+    margin-bottom: 15px; /* Espacio debajo del select */
+}
+
+/* Estilo para los campos de entrada de texto */
+input[type="text"] {
+    width: 100%; /* Asegura que el campo de entrada ocupe todo el ancho disponible */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px; /* Tamaño de fuente */
+    margin-bottom: 15px; /* Espacio debajo del campo de entrada */
+}

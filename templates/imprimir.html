@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Pedido</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 140%;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 1px;
+            margin: 0;  /* Centramos el contenedor */
+            border: none; /* Elimina el borde */
+            overflow: hidden;
+            page-break-inside: avoid;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        th, td {
+            padding: 1px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .header-table {
+            margin-bottom: 0;
+            
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .logo-container img {
+            max-width: 30px;
+            height: 30px;
+        }
+
+        .header-text {
+            flex: 1;
+            font-size: 10px;
+            color: #5b5b5b;
+            padding-left: 2px;
+        }
+
+        .header-text.right {
+            text-align: right;
+        }
+
+        .header-text .registro {
+            font-size: 14px;
+            color: #ff0000;
+        }
+
+        .footer-table {
+            width: 100%;
+            margin-top: 1px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .no-border td {
+            border: none;
+        }
+        .light-gray {
+            background-color: #f9f9f9;
+        }
+
+        .dark-gray {
+            background-color: #e0e0e0;
+        }
+
+        .footer-table {
+            width: 100%;
+            margin-top: 1px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .footer-table td {
+            text-align: center; /* Centra el contenido de las celdas del footer */
+        }
+
+
+
+        @media print {
+            body {
+                margin: 0;
+            }
+
+            .container {
+                padding: 1px;
+            }
+
+            table {
+                width: 100%;
+                page-break-inside: avoid;
+            }
+
+            tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+
+            th, td {
+                padding: 7px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% if registro %}
+    <div class="container" style="padding: 5px;">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td>
+                    <div class="logo-container">
+                        <img src="../static/img/capta_logo.png" alt="Logo de CAPTA" onerror="this.style.display='none'">
+                        <div style="font-size: 12px;" class="header-text">
+                            Nombre: {{ registro.nombre_paciente }}<br>
+                            Estado: {{ registro.estado }}<br>
+                            Delegación: {{ registro.delegacion }} <br>
+                        </div>
+                        <div class="header-text right">
+                            <div class="registro" style="font-size: 12px;">REGISTRO</div>
+                            <div style="font-size: 10px; color: #5b5b5b;">
+                                <small style="font-size: 11px;">ID:</small>{{ registro._id }}<br>
+                                <small style="font-size: 11px;">Fecha: {{ registro.fecha }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <!-- /Header -->
+
+        <!-- Order Details -->
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <th style="font-size: 10px; color: #5b5b5b;">
+                                    Compañía de Seguro:
+                                </th>
+                                <th style="font-size: 11px; color: #5b5b5b;">
+                                    <small>{{ registro.compania_seguro }}</small>
+                                </th>
+                                <th style="font-size: 10px; color: #5b5b5b;">
+                                    Derechohabiente a:
+                                </th>
+                                <th style="font-size: 11px; color: #5b5b5b;">
+                                    <small>{{ registro.derechohabiente }}</small>
+                                </th>
+                            </tr>
+                            <tr class="light-gray">
+                                <td style="display: 2px;" colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 11px; color: #ff0000;">
+                                    Motivo de Atención:
+                                </td>
+                                <td style="font-size: 11px; color: #646a6e;">
+                                    <small style="font-size: 11px;">{{ registro.motivo_atencion }}</small>
+                                </td>
+                                <td style="font-size: 11px; padding: 0; color: #646a6e;" align="start">Otro:</td>
+                                <td style="font-size: 10px;  padding: 0; margin-right: 30px; color: #1e2b33;" align="start">{{ registro.otromotivo }}</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 11px; color: #ff0000;">
+                                    Agente Causal:
+                                </td>
+                                <td style="font-size: 11px; color: #646a6e;">
+                                    <small style="font-size: 11px;">{{ registro.agente_causal }}</small>
+                                </td>
+                                <td style="font-size: 11px; padding: 0; color: #646a6e;" align="start">Otro:</td>
+                                <td style="font-size: 10px;  padding:0; margin-right: 28px; color: #1e2b33;" align="start">{{registro.especifique}}</td>
+                            </tr>
+                            
+                            <tr>
+                                <td style="font-size: 11px; color: #ff0000;">
+                                    Lugar de Accidente:
+                                </td>
+                                <td style="font-size: 11px; color: #646a6e;">
+                                    <small style="font-size: 10px;">{{registro.lugar_ocurrencia}}</small>
+                                </td>
+                                <td style="font-size: 11px; padding: 0px; color: #646a6e;" align="start">Otro:</td>
+                                <td style="font-size: 10px; padding: 0px; margin-right: 30px; color: #1e2b5b;" align="start">{{ registro.especifica_otro_lugar }}</td>
+                            </tr>
+                            <tr class="no-border">
+                                <td style="font-size: 11px; color: #5b5b5b;">
+                                    <strong>Información del Paciente</strong><br>
+                                    Edad: {{ registro.edad}}<br>
+                                    Genero: {{ registro.genero }}<br>
+                                    Ocupación: {{ registro.ocupacion }}<br>
+                                    Domicilio: {{ registro.domicilio}}<br>
+                                    Número Telefónico: + {{ registro.numero_telefonico}}<br>
+                                    Nombre de Afiliación: {{ registro.nombre_afiliacion}}<br>
+                                </td>
+                            </tr>
+                            <tr class="light-gray">
+                                <td style="display: 2px;" colspan="4"></td>
+                            </tr>
+                            <tr class="no-border">
+                                <td style="font-size: 11px; color: #5b5b5b;">
+                                    <strong>Detalles del Accidente</strong><br>
+                                    Accidente Automovilístico: {{ registro.accidentes_automovilisticos }}<br>
+                                    Sobre la Colisión: {{ registro.sobre_colision }}<br>
+                                    Contra Objeto: {{ registro.contra_objeto }}<br>
+                                    Impacto: {{ registro.impacto }}<br>
+                                    Hundimiento: {{ registro.hundimiento }}<br>
+                                    Parabrisas: {{ registro.parabrisas }}<br>
+                                    Volante: {{ registro.volante }}<br>
+                                    Bolsas de Aire: {{ registro.bolsa_de_aire}}<br>
+                                    Cinturón de Seguridad: {{ registro.cinturon_seguridad }}<br>
+                                </td>
+                            </tr>
+                            <tr class="light-gray">
+                                <td style="display: 2px;" colspan="4"></td>
+                            </tr>
+                            <tr class="no-border">
+                                <td style="font-size: 11px; color: #5b5b5b;">
+                                    <strong>Detalles de Ubicación:</strong><br>
+                                    Calle: {{registro.calle}}<br>
+                                    Entre: {{registro.entre}}<br>
+                                    Condición del Paciente: {{registro.condicion}}
+                                    Alcaldía/Municipio: {{ registro.alcaldia_municipio}}<br>
+                                    Lesiones Causadas Por: {{ registro.lesiones_causadas_por }}<br>
+                                    Otro Lugar: {{ registro.especifica_otro_lugar }}<br>
+                                    Prestador de Servicios: {{registro.prestador_servicios}}<br>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- /Order Details -->
+
+        <!-- Footer -->
+        <table class="footer-table">
+            <tr>
+                <td>
+                    <small style="margin: 0; margin-bottom: 30px;">CAPTA &copy; 2024 - Todos los derechos reservados.</small>
+                </td>
+            </tr>
+        </table>
+        <!-- /Footer -->
+    </div>
+    {% endif %}
+</body>
+</html>

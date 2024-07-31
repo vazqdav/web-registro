@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial</title>
+    <link rel="icon" href="https://acapulco.gob.mx/wp-content/uploads/2019/04/favicon-300x300.png" sizes="192x192" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Montserrat Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #e6e8ed;
+            color: #666666;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .material-icons-outlined {
+            vertical-align: middle;
+            line-height: 1px;
+        }
+
+        .text-primary {
+            color: #666666;
+        }
+
+        .text-blue {
+            color: #246dec;
+        }
+
+        .text-red {
+            color: #cc3c43;
+        }
+
+        .text-green {
+            color: #367952;
+        }
+
+        .text-orange {
+            color: #f5b74f;
+        }
+
+        .font-weight-bold {
+            font-weight: 600;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 260px 1fr 1fr 1fr;
+            grid-template-rows: 0.2fr 3fr;
+            grid-template-areas:
+                "sidebar header header header"
+                "sidebar main main main";
+            height: 100vh;
+        }
+
+        /* ---------- HEADER ---------- */
+
+        .header {
+            grid-area: header;
+            height: 70px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px 0 30px;
+            box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-icon {
+            display: none;
+        }
+
+        /* ---------- SIDEBAR ---------- */
+
+        #sidebar {
+            grid-area: sidebar;
+            height: 100%;
+            background-color: #21232d;
+            color: #9799ab;
+            overflow-y: auto;
+            transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+        }
+
+        .sidebar-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 20px 20px 20px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title>span {
+            display: none;
+        }
+
+        .sidebar-brand {
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .sidebar-list {
+            padding: 0;
+            margin-top: 15px;
+            list-style-type: none;
+        }
+
+        .sidebar-list-item {
+            padding: 20px 20px 20px 20px;
+        }
+
+        .sidebar-list-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        .sidebar-list-item>a {
+            text-decoration: none;
+            color: #9799ab;
+        }
+
+        .sidebar-responsive {
+            display: inline !important;
+            position: absolute;
+            z-index: 12 !important;
+        }
+
+        /* ---------- MAIN ---------- */
+
+        .main-container {
+            grid-area: main;
+            overflow-y: auto;
+            padding: 20px 20px;
+        }
+
+        .main-title {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .main-title>p {
+            font-size: 20px;
+        }
+
+        .main-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 25px;
+            background-color: #ffffff;
+            box-sizing: border-box;
+            border: 1px solid #d2d2d3;
+            border-radius: 5px;
+            box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:first-child {
+            border-left: 7px solid #246dec;
+        }
+
+        .card:nth-child(2) {
+            border-left: 7px solid #f5b74f;
+        }
+
+        .card:nth-child(3) {
+            border-left: 7px solid #367952;
+        }
+
+        .card:nth-child(4) {
+            border-left: 7px solid #cc3c43;
+        }
+
+        .card-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-inner>p {
+            font-size: 18px;
+        }
+
+        .card-inner>span {
+            font-size: 35px;
+        }
+
+        /* ---------- PROJECT ITEM ---------- */
+
+        .project-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 15px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-row img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .title-row h3 {
+            margin: 5px 0;
+            font-size: 18px;
+            color: #333333;
+        }
+
+        .links {
+            display: flex;
+            align-items: center;
+        }
+
+        .links a {
+            margin-left: 5px;
+            font-size: 14px;
+            color: #666666;
+            text-decoration: none;
+        }
+
+        .desc-row p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .progress-row {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .value-label {
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .footer-row .days {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-row .days i {
+            margin-right: 5px;
+        }
+
+        .footer-row .users img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        /* ---------- SCROLLBARS ---------- */
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px #a5aaad;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #4f35a1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #a5aaad;
+        }
+
+        /* ---------- MEDIA QUERIES ---------- */
+
+        /* Medium <= 992px */
+        @media screen and (max-width: 992px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: 0.2fr 3fr;
+                grid-template-areas:
+                    "header"
+                    "main";
+            }
+
+            #sidebar {
+                display: none;
+            }
+
+            .menu-icon {
+                display: inline;
+            }
+
+            .sidebar-title>span {
+                display: inline;
+            }
+        }
+
+        /* Small <= 768px */
+        @media screen and (max-width: 768px) {
+            .main-cards {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-bottom: 0;
+            }
+
+            .charts {
+                grid-template-columns: 1fr;
+                margin-top: 30px;
+            }
+        }
+
+        /* Extra Small <= 576px */
+        @media screen and (max-width: 576px) {
+            .header-left {
+                display: none;
+            }
+        }
+    </style>
+    <style>
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left span {
+            margin-right: 8px;
+        }
+
+        .header-left input[type="text"] {
+            padding: 5px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid #3333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-container">
+
+        <!-- Header -->
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined">menu</span>
+            </div>
+            <div class="header-left">
+                
+            </div>
+            <div class="header-right">
+                <a class="" href="/perfil">
+                    <span style="color:#4d4c4c;" class="material-icons-outlined">account_circle</span>
+                </a>
+            </div>
+        </header>
+        <!-- End Header -->
+
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">inventory</span> CAPTA Dashboard
+                </div>
+                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+            </div>
+
+            <ul class="sidebar-list">
+                <li class="sidebar-list-item">
+                    <a href="/dashboard" target="">
+                        <span class="material-icons-outlined">dashboard</span> Dashboard
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="/mostrar_registros" target="">
+                        <span class="material-icons-outlined">inventory_2</span> Registros
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="/guardar_registro" target="">
+                        <span class="material-icons-outlined">fact_check</span> Nuevo Registro
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="/graficos" target="">
+                        <span class="material-icons-outlined">poll</span> Graficar
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="/historial" target="">
+                        <span class="material-icons-outlined">history</span> Historial
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="/">
+                        <span class="material-icons-outlined">logout</span> Cerrar Sesión
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <!-- End Sidebar -->
+
+        <!-- Main -->
+        <main class="main-container">
+            <div class="main-title">
+                <p class="font-weight-bold">REPORTES</p>
+            </div>
+
+            <div>
+
+                <!-- Tabla estilizada -->
+                <!-- Formulario para filtrar por mes y año -->
+                <form method="POST" action="/historial" class="flex flex-col space-y-4">
+                    <div class="flex space-x-4">
+                        <div class="w-full relative">
+                            <label for="mes" class="block text-gray-700 text-sm font-bold mb-2">Mes:</label>
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                    class="w-5 h-5 text-gray-500 absolute left-3">
+                                    <path fill="currentColor"
+                                        d="M20 4h-1V3c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v1H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM7 2h10v2H7V2zm10 2h2v2h-2V4zm-12 0h2v2H5V4zm12 16H5v-1h14v1zm0-3H5v-1h14v1zm0-3H5v-1h14v1zm0-3H5v-1h14v1z" />
+                                </svg>
+                                <select name="mes" id="mes"
+                                    class="shadow appearance-none border rounded w-full py-2 px-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pl-10">
+                                    <option value="">Todos</option>
+                                    {% for mes in meses %}
+                                    <option value="{{ mes }}" {% if selected_mes==mes %}selected{% endif %}>{{ mes }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="w-full relative">
+                            <label for="año" class="block text-gray-700 text-sm font-bold mb-2">Año:</label>
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                    class="w-5 h-5 text-gray-500 absolute left-3">
+                                    <path fill="currentColor"
+                                        d="M19 3h-1V2c0-.55-.45-1-1-1s-1 .45-1 1v1H8V2C8 1.45 7.55 1 7 1S6 1.45 6 2v1H5c-1.1 0-2 .9-2 2v15c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM5 20V8h14v12H5zM7 10h5v5H7v-5z" />
+                                </svg>
+                                <select name="año" id="año"
+                                    class="shadow appearance-none border rounded w-full py-2 px-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pl-10">
+                                    <option value="">Todos</option>
+                                    {% for año in años %}
+                                    <option value="{{ año }}" {% if selected_año==año %}selected{% endif %}>{{ año }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="w-full flex items-end">
+                            <button type="submit"
+                                class="flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline">
+                                <!-- Icono de filtro -->
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 mr-2">
+                                    <path fill="currentColor"
+                                        d="M4 6c0 .55.45 1 1 1s1-.45 1-1V4c0-.55-.45-1-1-1S4 3.45 4 4v2zm0 6c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1S4 11.45 4 12v2zm0 6c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1S4 17.45 4 18v2zm14-2h-2v-6h2v6zm-4 0h-2v-10h2v10zm-4 0h-2v-8h2v8zm14 2c0 .55-.45 1-1 1s-1-.45-1-1v-2c0-.55.45-1 1-1s1 .45 1 1v2zM4 4c0-.55-.45-1-1-1S2 3.45 2 4v2c0 .55.45 1 1 1s1-.45 1-1V4z" />
+                                </svg>
+                                Filtrar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="bg-white shadow rounded-lg overflow-hidden mt-4">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="text-gray-400">
+                                <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200">Mes</th>
+                                <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200">Año</th>
+                                <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200">Total de Accidentes</th>
+                                <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200">Total de Registros</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600">
+                            {% for mes_año, registros in historial_por_mes.items() %}
+                            <tr>
+                                <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
+                                    <div class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                            class="w-7 h-7 p-1.5 mr-2.5 rounded-lg border border-gray-200">
+                                            <path fill="#03a9f4"
+                                                d="M19 3h-1V2c0-.55-.45-1-1-1s-1 .45-1 1v1H8V2C8 1.45 7.55 1 7 1S6 1.45 6 2v1H5c-1.1 0-2 .9-2 2v15c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM5 20V8h14v12H5zM7 10h5v5H7v-5z" />
+                                            <path fill="#283593" d="M7 10h5v5H7z" />
+                                        </svg>
+                                        {{ mes_año.split('-')[1] }}
+                                    </div>
+                                </td>
+                                <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
+                                    <div class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                            class="w-7 h-7 p-1.5 mr-2.5 rounded-lg border border-gray-200">
+                                            <path fill="#03a9f4"
+                                                d="M19 3h-1V2c0-.55-.45-1-1-1s-1 .45-1 1v1H8V2C8 1.45 7.55 1 7 1S6 1.45 6 2v1H5c-1.1 0-2 .9-2 2v15c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM5 20V8h14v12H5z" />
+                                            <path fill="#283593"
+                                                d="M7 10h1v1H7v-1zm2 0h1v1H9v-1zm2 0h1v1h-1v-1zm2 0h1v1h-1v-1zm2 0h1v1h-1v-1zm-8 2h1v1H7v-1zm2 0h1v1H9v-1zm2 0h1v1h-1v-1zm2 0h1v1h-1v-1zm2 0h1v1h-1v-1zm-8 2h1v1H7v-1zm2 0h1v1H9v-1zm2 0h1v1h-1v-1zm2 0h1v1h-1v-1zm2 0h1v1h-1v-1zm-8 2h1v1H7v-1zm2 0h1v1H9v-1zm2 0h1v1h-1v-1zm2 0h1v1h-1v-1zm2 0h1v1h-1v-1z" />
+                                        </svg>
+                                        {{ mes_año.split('-')[0] }}
+                                    </div>
+                                </td>
+                                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 text-red-500">
+                                    Accidentes: {{ registros|length }}
+                                </td>
+                                <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
+                                    <div class="flex items-center">
+                                        <div class="sm:flex hidden flex-col">
+                                            Registros: {{ registros|length }}
+                                        </div>
+                                        <button
+                                            class="w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
+                                            <svg viewBox="0 0 24 24" class="w-5" stroke="currentColor" stroke-width="2"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="1"></circle>
+                                                <circle cx="19" cy="12" r="1"></circle>
+                                                <circle cx="5" cy="12" r="1"></circle>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </main>
+        <style>
+            /* Estilo para los botones */
+            .styled-button {
+                background-color: #ffffff;
+                /* Fondo blanco */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                /* Sombra suave */
+                border-radius: 0.5rem;
+                /* Bordes redondeados */
+                border: 1px solid #e5e7eb;
+                /* Borde gris */
+                color: #4a5568;
+                /* Color del texto */
+                padding: 0.5rem 1rem;
+                /* Relleno interno */
+                display: inline-flex;
+                /* Mostrar como un elemento en línea flexible */
+                align-items: center;
+                /* Alinear verticalmente al centro */
+                justify-content: center;
+                /* Alinear horizontalmente al centro */
+                transition: background-color 0.2s, box-shadow 0.2s;
+                /* Transición para el fondo y la sombra */
+            }
+
+            .styled-button:hover {
+                background-color: #f7fafc;
+                /* Fondo más claro al pasar el mouse */
+                box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+                /* Sombra más intensa */
+            }
+
+            /* Estilo específico para los botones de navegación */
+            .nav-button {
+                width: 2rem;
+                /* Ancho del botón */
+                height: 2rem;
+                /* Alto del botón */
+            }
+
+            /* Estilo para el contenedor de navegación */
+            .nav-container {
+                display: flex;
+                /* Mostrar como un contenedor flexible */
+                align-items: center;
+                /* Alinear verticalmente al centro */
+                justify-content: flex-end;
+                /* Alinear horizontalmente a la derecha */
+                color: #718096;
+                /* Color del texto */
+                font-size: 0.75rem;
+                /* Tamaño del texto */
+                margin-top: 1rem;
+                /* Margen superior */
+            }
+
+            .nav-container span {
+                margin-right: 0.75rem;
+                /* Margen derecho */
+            }
+
+            .nav-container .nav-button {
+                margin-left: 0.5rem;
+                /* Margen izquierdo */
+            }
+
+            /* Estilo para el contenedor del botón desplegable */
+            .desplegable1 {
+                position: relative;
+                display: inline-block;
+            }
+
+            /* Estilo para los links del menú desplegable */
+            .desplegable1 .links1 {
+                display: none;
+                position: absolute;
+                background-color: #ffffff;
+                border: 1px solid #e5e7eb;
+                border-radius: 0.5rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                top: 100%;
+                left: 0;
+                z-index: 1;
+                min-width: 93%;
+            }
+
+            .desplegable1 .links1 a {
+                color: #4a5568;
+                padding: 0.5rem 1rem;
+                display: block;
+                text-decoration: none;
+            }
+
+            .desplegable1 .links1 a:hover {
+                background-color: #f7fafc;
+            }
+
+            /* Mostrar el menú cuando el botón es enfocado */
+            .desplegable1:focus-within .links1 {
+                display: block;
+            }
+
+
+
+            .desplegable2 {
+                position: relative;
+                display: inline-block;
+            }
+
+            .desplegable2 .links2 {
+                display: none;
+                position: absolute;
+                background-color: #ffffff;
+                border: 1px solid #e5e7eb;
+                border-radius: 0.5rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                top: 100%;
+                left: 0;
+                z-index: 1;
+                min-width: 100%;
+            }
+
+            .desplegable2 .links2 a {
+                color: #4a5568;
+                padding: 0.5rem 1rem;
+                display: block;
+                text-decoration: none;
+            }
+
+            .desplegable2 .links2 a:hover {
+                background-color: #f7fafc;
+            }
+
+            .desplegable2:focus-within .links2 {
+                display: block;
+            }
+        </style>
+        <!-- End Main -->
+    </div>
+</body>
+
+</html>

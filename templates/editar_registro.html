@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Registro</title>
+    <link rel="stylesheet" href="../static/css/edit.css">
+    
+    <link rel="icon" href="https://acapulco.gob.mx/wp-content/uploads/2019/04/favicon-300x300.png" sizes="192x192" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>  
+    <div class="container">
+        <h1>Editar Registro</h1>
+        <form action="{{ url_for('editar_registro', registro_id=registro._id) }}" method="POST">
+            <!-- Campos generales -->
+            <label for="estado">Estado</label>
+            <input type="text" id="estado" name="estado" value="{{ registro.estado }}" required>
+            
+            <label for="delegacion">Delegación</label>
+            <input type="text" id="delegacion" name="delegacion" value="{{ registro.delegacion }}" required>
+            
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" name="fecha" value="{{ registro.fecha }}" required>
+            
+            <label for="dia_semana">Día de la Semana</label>
+            <input type="text" id="dia_semana" name="dia_semana" value="{{ registro.dia_semana }}" required>
+            
+            <label for="nombre_paciente">Nombre del Paciente</label>
+            <input type="text" id="nombre_paciente" name="nombre_paciente" value="{{ registro.nombre_paciente }}" required>
+            
+            <label for="nombre_afiliacion">Nombre de Afiliación</label>
+            <input type="text" id="nombre_afiliacion" name="nombre_afiliacion" value="{{ registro.nombre_afiliacion }}" required>
+            
+            <label for="genero">Género</label>
+            <select id="genero" name="genero" required>
+                <option disabled selected>Selecciona una Opción</option>
+                <option value="Hombre" {% if registro.genero == 'Hombre' %}selected{% endif %}>Hombre</option>
+                <option value="Mujer" {% if registro.genero == 'Mujer' %}selected{% endif %}>Mujer</option>
+                <option value="Otro" {% if registro.genero == 'Otro' %}selected{% endif %}>Otro</option>
+            </select>
+            
+            
+            <label for="edad">Edad</label>
+            <input type="number" id="edad" name="edad" value="{{ registro.edad }}" required>
+            
+            <label for="meses">Meses</label>
+            <input type="number" id="meses" name="meses" value="{{ registro.meses }}" required>
+            
+            <label for="paramedico">Paramédico</label>
+            <input type="text" id="paramedico" name="paramedico" value="{{ registro.paramedico }}" required>
+            
+            <label for="domicilio">Domicilio</label>
+            <input type="text" id="domicilio" name="domicilio" value="{{ registro.domicilio }}" required>
+            
+            <label for="colonia_comunidad">Colonia/Comunidad</label>
+            <input type="text" id="colonia_comunidad" name="colonia_comunidad" value="{{ registro.colonia_comunidad }}" required>
+            
+            <label for="numero_telefonico">Número Telefónico</label>
+            <input type="text" id="numero_telefonico" name="numero_telefonico" value="{{ registro.numero_telefonico }}" required>
+            
+            <label for="ocupacion">Ocupación</label>
+            <input type="text" id="ocupacion" name="ocupacion" value="{{ registro.ocupacion }}" required>
+            
+            <label for="derechohabiente">Derechohabiente</label>
+            <input type="text" id="derechohabiente" name="derechohabiente" value="{{ registro.derechohabiente }}" required>
+            
+            <label for="compania_seguro">Compañía de Seguro</label>
+            <input type="text" id="compania_seguro" name="compania_seguro" value="{{ registro.compania_seguro }}" required>
+            
+            <label for="agente_causal">Agente Causal</label>
+            <select id="agente_causal" name="agente_causal" required>
+                <option disabled selected>Selecciona una Opción</option>
+                <option value="Arma" {% if registro.agente_causal == 'Arma' %}selected{% endif %}>Arma</option>
+                <option value="Juguete" {% if registro.agente_causal == 'Juguete' %}selected{% endif %}>Juguete</option>
+                <option value="Automotor" {% if registro.agente_causal == 'Automotor' %}selected{% endif %}>Automotor</option>
+                <option value="Bicicleta/Scooter" {% if registro.agente_causal == 'Bicicleta/Scooter' %}selected{% endif %}>Bicicleta/Scooter</option>
+                <option value="Producto Biologico/Quimico" {% if registro.agente_causal == 'Producto Biologico/Quimico' %}selected{% endif %}>Producto Biológico/Químico</option>
+                <option value="Maquinaria" {% if registro.agente_causal == 'Maquinaria' %}selected{% endif %}>Maquinaria</option>
+                <option value="Herramienta" {% if registro.agente_causal == 'Herramienta' %}selected{% endif %}>Herramienta</option>
+                <option value="Fuego" {% if registro.agente_causal == 'Fuego' %}selected{% endif %}>Fuego</option>
+                <option value="Sustancia/Objeto Caliente" {% if registro.agente_causal == 'Sustancia/Objeto Caliente' %}selected{% endif %}>Sustancia/Objeto Caliente</option>
+                <option value="Sustancia Toxica" {% if registro.agente_causal == 'Sustancia Toxica' %}selected{% endif %}>Sustancia Tóxica</option>
+                <option value="Electricidad" {% if registro.agente_causal == 'Electricidad' %}selected{% endif %}>Electricidad</option>
+                <option value="Explosion" {% if registro.agente_causal == 'Explosion' %}selected{% endif %}>Explosión</option>
+                <option value="Ser Humano" {% if registro.agente_causal == 'Ser Humano' %}selected{% endif %}>Ser Humano</option>
+                <option value="Animal" {% if registro.agente_causal == 'Animal' %}selected{% endif %}>Animal</option>
+                <option value="Otro" {% if registro.agente_causal == 'Otro' %}selected{% endif %}>Otro</option>
+            </select>
+            
+            <label for="especifique">Especifique</label>
+            <input type="text" id="especifique" name="especifique" value="{{ registro.especifique }}" required>
+            
+            <label for="lesiones_causadas_por">Lesiones Causadas Por</label>
+            <input type="text" id="lesiones_causadas_por" name="lesiones_causadas_por" value="{{ registro.lesiones_causadas_por }}" required>
+            
+            <label for="accidentes_automovilisticos">Accidentes Automovilísticos</label>
+<select id="accidentes_automovilisticos" name="accidentes_automovilisticos" required>
+    <option disabled selected>Selecciona una Opción</option>
+    <option value="Colision" {% if registro.accidentes_automovilisticos == 'Colision' %}selected{% endif %}>Colisión</option>
+    <option value="Automotor" {% if registro.accidentes_automovilisticos == 'Automotor' %}selected{% endif %}>Automotor</option>
+    <option value="Volcadura" {% if registro.accidentes_automovilisticos == 'Volcadura' %}selected{% endif %}>Volcadura</option>
+    <option value="Bicicleta" {% if registro.accidentes_automovilisticos == 'Bicicleta' %}selected{% endif %}>Bicicleta</option>
+    <option value="Motocicleta" {% if registro.accidentes_automovilisticos == 'Motocicleta' %}selected{% endif %}>Motocicleta</option>
+    <option value="Maquinaria" {% if registro.accidentes_automovilisticos == 'Maquinaria' %}selected{% endif %}>Maquinaria</option>
+</select>
+
+            
+            <label for="sobre_colision">Sobre Colisión</label>
+            <input type="text" id="sobre_colision" name="sobre_colision" value="{{ registro.sobre_colision }}" required>
+            
+            <label for="contra_objeto">Contra Objeto</label>
+<select id="contra_objeto" name="contra_objeto" required>
+    <option disabled selected>Selecciona una Opción</option>
+    <option value="Fijo" {% if registro.contra_objeto == 'Fijo' %}selected{% endif %}>Fijo</option>
+    <option value="En movimiento" {% if registro.contra_objeto == 'En movimiento' %}selected{% endif %}>En movimiento</option>
+</select>
+
+            
+<label for="impacto">Impacto</label>
+<select id="impacto" name="impacto" required>
+    <option disabled selected>Selecciona una Opción</option>
+    <option value="Frontal" {% if registro.impacto == 'Frontal' %}selected{% endif %}>Frontal</option>
+    <option value="Lateral" {% if registro.impacto == 'Lateral' %}selected{% endif %}>Lateral</option>
+    <option value="Posterior" {% if registro.impacto == 'Posterior' %}selected{% endif %}>Posterior</option>
+</select>
+
+            
+            <label for="hundimiento">Hundimiento</label>
+            <input type="text" id="hundimiento" name="hundimiento" value="{{ registro.hundimiento }}" required>
+            
+            <label for="parabrisas">Parabrisas</label>
+            <select id="parabrisas" name="parabrisas" required>
+                <option disabled selected>Selecciona una Opción</option>
+                <option value="Integro" {% if registro.parabrisas == 'Integro' %}selected{% endif %}>Integro</option>
+                <option value="Roto/Doblado" {% if registro.parabrisas == 'Roto/Doblado' %}selected{% endif %}>Roto/Doblado</option>
+            </select>
+            
+            
+            <label for="volante">Volante</label>
+            <select id="volante" name="volante" required>
+                <option disabled selected>Selecciona una Opción</option>
+                <option value="Integro" {% if registro.volante == 'Integro' %}selected{% endif %}>Integro</option>
+                <option value="Roto/Doblado" {% if registro.volante == 'Roto/Doblado' %}selected{% endif %}>Roto/Doblado</option>
+            </select>
+            
+            
+            <label for="bolsa_de_aire">Bolsa de Aire</label>
+            <select id="bolsa_de_aire" name="bolsa_de_aire" required>
+                <option disabled selected>Selecciona una Opción</option>
+                <option value="Si" {% if registro.bolsa_de_aire == 'Si' %}selected{% endif %}>Sí</option>
+                <option value="No" {% if registro.bolsa_de_aire == 'No' %}selected{% endif %}>No</option>
+            </select>
+            
+            
+            <label for="cinturon_seguridad">Cinturón de Seguridad</label>
+            <select id="cinturon_seguridad" name="cinturon_seguridad" required>
+                <option disabled selected>Selecciona una Opción</option>
+                <option value="Si" {% if registro.cinturon_seguridad == 'Si' %}selected{% endif %}>Sí</option>
+                <option value="No" {% if registro.cinturon_seguridad == 'No' %}selected{% endif %}>No</option>
+                <option value="Roto" {% if registro.cinturon_seguridad == 'Roto' %}selected{% endif %}>Roto</option>
+                <option value="Eyectado" {% if registro.cinturon_seguridad == 'Eyectado' %}selected{% endif %}>Eyectado</option>
+                <option value="Prensado" {% if registro.cinturon_seguridad == 'Prensado' %}selected{% endif %}>Prensado</option>
+            </select>
+            
+            
+            <label for="gesta">Gesta</label>
+            <input type="text" id="gesta" name="gesta" value="{{ registro.gesta }}" required>
+            
+            <label for="cesarea">Cesárea</label>
+            <input type="text" id="cesarea" name="cesarea" value="{{ registro.cesarea }}" required>
+            
+            <label for="para">Para</label>
+            <input type="text" id="para" name="para" value="{{ registro.para }}" required>
+            
+            <label for="aborto">Aborto</label>
+            <input type="text" id="aborto" name="aborto" value="{{ registro.aborto }}" required>
+            
+            <label for="semanas_gestacion">Semanas de Gestación</label>
+            <input type="number" id="semanas_gestacion" name="semanas_gestacion" value="{{ registro.semanas_gestacion }}" required>
+            
+            <label for="motivo_atencion">Motivo de Atención</label>
+            <select id="motivo_atencion" name="motivo_atencion" class="form-control" required>
+                <option disabled selected>Selecciona una Opción</option>
+                <option value="Enfermedad" {% if registro.motivo_atencion == 'Enfermedad' %}selected{% endif %}>Enfermedad</option>
+                <option value="Traumatismo" {% if registro.motivo_atencion == 'Traumatismo' %}selected{% endif %}>Traumatismo</option>
+                <option value="Ginecobstetrico" {% if registro.motivo_atencion == 'Ginecobstetrico' %}selected{% endif %}>Ginecobstetrico</option>
+                <option value="Traslado" {% if registro.motivo_atencion == 'Traslado' %}selected{% endif %}>Traslado</option>
+                <option value="Serv. Especial" {% if registro.motivo_atencion == 'Serv. Especial' %}selected{% endif %}>Serv. Especial</option>
+                <option value="Otro" {% if registro.motivo_atencion == 'Otro' %}selected{% endif %}>Otro</option>
+            </select>
+
+            <label for="otromotivo">Otro Motivo</label>
+            <input type="text" id="otromotivo" name="otromotivo" value="{{ registro.otromotivo }}" required>
+            
+            <label for="hora_llamada">Hora de Llamada</label>
+            <input type="time" id="hora_llamada" name="hora_llamada" value="{{ registro.hora_llamada }}" required>
+            
+            <label for="hora_despacho">Hora de Despacho</label>
+            <input type="time" id="hora_despacho" name="hora_despacho" value="{{ registro.hora_despacho }}" required>
+            
+            <label for="hora_arribo">Hora de Arribo</label>
+            <input type="time" id="hora_arribo" name="hora_arribo" value="{{ registro.hora_arribo }}" required>
+            
+            <label for="hora_traslado">Hora de Traslado</label>
+            <input type="time" id="hora_traslado" name="hora_traslado" value="{{ registro.hora_traslado }}" required>
+            
+            <label for="hora_hospital">Hora de Hospital</label>
+            <input type="time" id="hora_hospital" name="hora_hospital" value="{{ registro.hora_hospital }}" required>
+            
+            <label for="hora_disponible">Hora Disponible</label>
+            <input type="time" id="hora_disponible" name="hora_disponible" value="{{ registro.hora_disponible }}" required>
+            
+            <label for="motivo_ubicacion">Motivo de Ubicación</label>
+            <input type="text" id="motivo_ubicacion" name="motivo_ubicacion" value="{{ registro.motivo_ubicacion }}" required>
+            
+            <label for="calle">Calle</label>
+            <input type="text" id="calle" name="calle" value="{{ registro.calle }}" required>
+            
+            <label for="entre">Entre</label>
+            <input type="text" id="entre" name="entre" value="{{ registro.entre }}" required>
+            
+            <label for="colonia_comunidad">Colonia/Comunidad</label>
+            <input type="text" id="colonia_comunidad" name="colonia_comunidad" value="{{ registro.colonia_comunidad }}" required>
+            
+            <label for="alcaldia_municipio">Alcaldía/Municipio</label>
+            <input type="text" id="alcaldia_municipio" name="alcaldia_municipio" value="{{ registro.alcaldia_municipio }}" required>
+            
+            <label for="lugar_ocurrencia">Lugar de Ocurrencia</label>
+            <select id="lugar_ocurrencia" name="lugar_ocurrencia" required>
+                <option disabled selected>Selecciona una Opción</option>
+                <option value="Hogar" {% if registro.lugar_ocurrencia == 'Hogar' %}selected{% endif %}>Hogar</option>
+                <option value="Vía Pública" {% if registro.lugar_ocurrencia == 'Vía Pública' %}selected{% endif %}>Vía Pública</option>
+                <option value="Trabajo" {% if registro.lugar_ocurrencia == 'Trabajo' %}selected{% endif %}>Trabajo</option>
+                <option value="Escuela" {% if registro.lugar_ocurrencia == 'Escuela' %}selected{% endif %}>Escuela</option>
+                <option value="Recreación y Deporte" {% if registro.lugar_ocurrencia == 'Recreación y Deporte' %}selected{% endif %}>Recreación y Deporte</option>
+                <option value="Transporte Público" {% if registro.lugar_ocurrencia == 'Transporte Público' %}selected{% endif %}>Transporte Público</option>
+                <option value="Otro" {% if registro.lugar_ocurrencia == 'Otro' %}selected{% endif %}>Otro</option>
+            </select>
+            
+            <label for="especifica_otro_lugar">Especifica Otro Lugar</label>
+            <input type="text" id="especifica_otro_lugar" name="especifica_otro_lugar" value="{{ registro.especifica_otro_lugar }}" required>
+            
+            <label for="numero_ambulancia">Número de Ambulancia</label>
+            <input type="text" id="numero_ambulancia" name="numero_ambulancia" value="{{ registro.numero_ambulancia }}" required>
+            
+            <label for="operador">Operador</label>
+            <input type="text" id="operador" name="operador" value="{{ registro.operador }}" required>
+            
+            <label for="prestador_servicios">Prestador de Servicios</label>
+            <input type="text" id="prestador_servicios" name="prestador_servicios" value="{{ registro.prestador_servicios }}" required>
+            
+            <label for="asignacion">Asignación</label>
+            <input type="text" id="asignacion" name="asignacion" value="{{ registro.asignacion }}" required>
+            
+            <!-- Signos Vitales -->
+            <h2>Signos Vitales</h2>
+            <label for="hora_signos">Hora</label>
+            <input type="time" id="hora_signos" name="hora" value="{{ registro.signos_vitales.hora }}">
+            
+            <label for="fr">Frecuencia Respiratoria</label>
+            <input type="text" id="fr" name="fr" value="{{ registro.signos_vitales.fr }}">
+            
+            <label for="fc">Frecuencia Cardíaca</label>
+            <input type="text" id="fc" name="fc" value="{{ registro.signos_vitales.fc }}">
+            
+            <label for="tas">Tensión Arterial Sistólica</label>
+            <input type="text" id="tas" name="tas" value="{{ registro.signos_vitales.tas }}">
+            
+            <label for="tad">Tensión Arterial Diastólica</label>
+            <input type="text" id="tad" name="tad" value="{{ registro.signos_vitales.tad }}">
+            
+            <label for="saq2">Saturación de O2</label>
+            <input type="text" id="saq2" name="saq2" value="{{ registro.signos_vitales.saq2 }}">
+            
+            <label for="temp">Temperatura</label>
+            <input type="text" id="temp" name="temp" value="{{ registro.signos_vitales.temp }}">
+            
+            <label for="gluc">Glucosa</label>
+            <input type="text" id="gluc" name="gluc" value="{{ registro.signos_vitales.gluc }}">
+            
+            <label for="glasgow">Glasgow</label>
+            <input type="text" id="glasgow" name="glasgow" value="{{ registro.signos_vitales.glasgow }}">
+            
+            <label for="trauma_score">Trauma Score</label>
+            <input type="text" id="trauma_score" name="trauma_score" value="{{ registro.signos_vitales.trauma_score }}">
+            
+            <label for="ekg">EKG</label>
+            <input type="text" id="ekg" name="ekg" value="{{ registro.signos_vitales.ekg }}">
+
+            <!-- Interrogatorio -->
+            <h2>Interrogatorio</h2>
+            <label for="alergias">Alergias</label>
+            <input type="text" id="alergias" name="alergias" value="{{ registro.interrogatorio.alergias }}">
+            
+            <label for="primer_respondiente">Primer Respondiente</label>
+            <input type="text" id="primer_respondiente" name="primer_respondiente" value="{{ registro.interrogatorio.primer_respondiente }}">
+            
+            <label for="medicamentos">Medicamentos</label>
+            <input type="text" id="medicamentos" name="medicamentos" value="{{ registro.interrogatorio.medicamentos }}">
+            
+            <label for="enfermedades_cirugias">Enfermedades y Cirugías</label>
+            <input type="text" id="enfermedades_cirugias" name="enfermedades_cirugias" value="{{ registro.interrogatorio.enfermedades_cirugias }}">
+            
+            <label for="ultima_comida">Última Comida</label>
+            <input type="text" id="ultima_comida" name="ultima_comida" value="{{ registro.interrogatorio.ultima_comida }}">
+            
+            <label for="eventos_previos">Eventos Previos</label>
+            <input type="text" id="eventos_previos" name="eventos_previos" value="{{ registro.interrogatorio.eventos_previos }}">
+
+            <!-- Condición del Paciente -->
+            <h2>Condición del Paciente</h2>
+            <div class="input-field">
+                <label>Asistencia ventilatoria</label>
+                <select name="asistencia_ventilatoria">
+                    <option disabled selected>Selecciona una Opción</option>
+                    <option value="balon_valvula_mascarilla">Balón válvula mascarilla</option>
+                    <option value="valvula_de_demanda">Válvula de demanda</option>
+                </select>
+            </div>
+            
+            <div class="input-field">
+                <label>Suplemento de oxígeno</label>
+                <select name="suplemento_oxigeno">
+                    <option disabled selected>Selecciona una Opción</option>
+                    <option value="puntas_nasales">Puntas nasales</option>
+                    <option value="mascarilla_simple">Mascarilla simple</option>
+                    <option value="mascarilla_con_reservorio">Mascarilla con reservorio</option>
+                    <option value="mascarilla_venturi">Mascarilla Venturi</option>
+                </select>
+            </div>
+            
+            <div class="input-field">
+                <label>Ventilador automático</label>
+                <input type="text" id="frecuencia" name="frecuencia" class="ventilador-input">
+            </div>
+            
+            <div class="input-field">
+                <label>Volumen</label>
+                <input type="text" id="volumen" name="volumen" class="ventilador-input">
+            </div>
+            
+            <label for="lts_x_min">Lts x Min</label>
+            <input type="text" id="lts_x_min" name="lts_x_min" value="{{ registro.condicion_paciente.lts_x_min }}">
+            
+            <label for="hiperventilacion">Hiperventilación</label>
+            <input type="text" id="hiperventilacion" name="hiperventilacion" value="{{ registro.condicion_paciente.hiperventilacion }}">
+            
+            <label for="hemitorax">Hemitorax</label>
+<select name="hemitorax" id="hemitorax">
+    <option disabled>Selecciona una Opcion</option>
+    <option value="hemitorax_derecho" {% if registro.hemitorax == 'hemitorax_derecho' %}selected{% endif %}>Hemitorax derecho</option>
+    <option value="hemitorax_izquierdo" {% if registro.hemitorax == 'hemitorax_izquierdo' %}selected{% endif %}>Hemitorax izquierdo</option>
+</select>
+
+            
+            <label for="linea_iv">Línea IV</label>
+            <input type="text" id="linea_iv" name="linea_iv" value="{{ registro.condicion_paciente.linea_iv }}">
+            
+            <label for="cateter">Catéter</label>
+            <input type="text" id="cateter" name="cateter" value="{{ registro.condicion_paciente.cateter }}">
+            
+            <label for="sitio_aplicacion">Sitio de Aplicación</label>
+            <input type="text" id="sitio_aplicacion" name="sitio_aplicacion" value="{{ registro.condicion_paciente.sitio_aplicacion }}">
+
+            <!-- Otros Datos -->
+            <h2>Otros Datos</h2>
+            <label for="hora_otros">Hora</label>
+            <input type="text" id="hora_otros" name="hora" value="{{ registro.otros_datos.hora }}">
+            
+            <label for="medicamento_otros">Medicamento</label>
+            <input type="text" id="medicamento_otros" name="medicamento" value="{{ registro.otros_datos.medicamento }}">
+            
+            <label for="dosis">Dosis</label>
+            <input type="text" id="dosis" name="dosis" value="{{ registro.otros_datos.dosis }}">
+            
+            <label for="via_administracion">Vía de Administración</label>
+            <input type="text" id="via_administracion" name="via_administracion" value="{{ registro.otros_datos.via_administracion }}">
+            
+            <label for="terapia_electrica">Terapia Eléctrica</label>
+            <input type="text" id="terapia_electrica" name="terapia_electrica" value="{{ registro.otros_datos.terapia_electrica }}">
+            
+            <label for="tipo_soluciones">Tipo de Soluciones</label>
+            <input type="text" id="tipo_soluciones" name="tipo_soluciones" value="{{ registro.otros_datos.tipo_soluciones }}">
+            
+            <label for="especifique_otros">Especifique</label>
+            <input type="text" id="especifique_otros" name="especifique" value="{{ registro.otros_datos.especifique }}">
+            
+            <label for="tipo_rcp">Tipo de RCP</label>
+            <select name="tipo_rcp" id="tipo_rcp">
+                <option disabled>Selecciona una Opcion</option>
+                <option value="rcp_basica" {% if registro.tipo_rcp == 'rcp_basica' %}selected{% endif %}>RCP Básica</option>
+                <option value="rcp_avanzada" {% if registro.tipo_rcp == 'rcp_avanzada' %}selected{% endif %}>RCP Avanzada</option>
+            </select>
+
+            <label>Zonas de Lesión</label>
+            <div class="checkbox-group">
+                <!-- Columna 1 -->
+                <div class="checkbox-item">
+                    <input type="checkbox" id="deformities" name="lesion_zones" value="deformities">
+                    <label for="deformities">Deformidades</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="contusions" name="lesion_zones" value="contusions">
+                    <label for="contusions">Contusiones</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="abrasions" name="lesion_zones" value="abrasions">
+                    <label for="abrasions">Abrasiones</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="penetrations" name="lesion_zones" value="penetrations">
+                    <label for="penetrations">Penetraciones</label>
+                </div>
+            
+                <!-- Columna 2 -->
+                <div class="checkbox-item">
+                    <input type="checkbox" id="paradoxical" name="lesion_zones" value="paradoxical">
+                    <label for="paradoxical">Movimiento paradójico</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="crepitation" name="lesion_zones" value="crepitation">
+                    <label for="crepitation">Crepitación</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="wounds" name="lesion_zones" value="wounds">
+                    <label for="wounds">Heridas</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="fractures" name="lesion_zones" value="fractures">
+                    <label for="fractures">Fracturas</label>
+                </div>
+            
+                <!-- Columna 3 -->
+                <div class="checkbox-item">
+                    <input type="checkbox" id="subcutaneous" name="lesion_zones" value="subcutaneous">
+                    <label for="subcutaneous">Énfasis subcutáneo</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="burns" name="lesion_zones" value="burns">
+                    <label for="burns">Quemaduras</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="lacerations" name="lesion_zones" value="lacerations">
+                    <label for="lacerations">Laceraciones</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="edema" name="lesion_zones" value="edema">
+                    <label for="edema">Edema</label>
+                </div>
+            
+                <!-- Columna 4 -->
+                <div class="checkbox-item">
+                    <input type="checkbox" id="sensitivity" name="lesion_zones" value="sensitivity">
+                    <label for="sensitivity">Alteración de sensibilidad</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="mobility" name="lesion_zones" value="mobility">
+                    <label for="mobility">Alteración de movilidad</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="pain" name="lesion_zones" value="pain">
+                    <label for="pain">Dolor</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="implication" name="lesion_zones" value="implication">
+                    <label for="implication">Imputación</label>
+                </div>
+            </div>
+            
+            <span class="title">Signos Vitales y Monitoreo</span>
+            <div class="fields vital-signs-monitoring">
+                <div class="input-field">
+                    <label for="eventos_previos">Eventos previos relacionados</label>
+                    <input type="text" name="eventos_previos" id="eventos_previos">
+                </div>
+                <div class="input-field">
+                    <label for="ultima_comida">Hora de última comida</label>
+                    <input type="text" name="ultima_comida" id="ultima_comida">
+                </div>
+                <div class="input-field">
+                    <label for="enfermedades_cirugias">Enfermedades y cirugías previas</label>
+                    <input type="text" name="enfermedades_cirugias" id="enfermedades_cirugias">
+                </div>
+                <div class="input-field">
+                    <label for="medicamentos">Medicamentos que está ingiriendo</label>
+                    <input type="text" name="medicamentos" id="medicamentos">
+                </div>
+                <div class="input-field">
+                    <label for="alergias">Alergias</label>
+                    <input type="text" name="alergias" id="alergias" placeholder="Ingresa las alergias">
+                </div>
+            </div>
+            
+
+
+            <label for="niveles_deformidad">Niveles de Deformidad:</label>
+             <input type="text" id="niveles_deformidad" name="niveles_deformidad" class="form-control" value="{{ registro.niveles_deformidad  }}">
+
+             <label>Nivel de Conciencia</label>
+             <select name="nivel_conciencia">
+                 <option disabled selected>Selecciona una Opción</option>
+                 <option value="alerta">Alerta</option>
+                 <option value="respuesta_verbal">Respuesta a estimulación verbal</option>
+                 <option value="respuesta_doloso">Respuesta a estímulo doloroso</option>
+                 <option value="inconsciente">Inconsciente</option>
+             </select>
+             
+         
+             <label>Via Aerea</label>
+<select name="via_aerea">
+    <option disabled selected>Selecciona una Opcion</option>
+    <option value="permeable">Permeable</option>
+    <option value="comprometida">Comprometida</option>
+</select>
+
+         
+             <label>Reflejo de Deglusion</label>
+             <select name="reflejo_deglusion">
+                 <option disabled selected>Selecciona una Opcion</option>
+                 <option value="ausente">Ausente</option>
+                 <option value="presente">Presente</option>
+             </select>
+             
+         
+             <label>Observación</label>
+             <select name="observacion">
+                 <option disabled selected>Selecciona una Opcion</option>
+                 <option value="automatismo_regular">Automatismo regular</option>
+                 <option value="automatismo_irregular">Automatismo irregular</option>
+                 <option value="ventilacion_rapida">Ventilación rápida</option>
+                 <option value="ventilacion_superficial">Ventilación superficial</option>
+                 <option value="apnea">Apnea</option>
+             </select>
+             
+         
+             <label>Auscultación</label>
+<select name="auscultacion">
+    <option style="font-size: 12px;" disabled selected>Selecciona una Opción</option>
+    <option value="ruidos_respiratorios_normales">Ruidos respiratorios normales</option>
+    <option value="ruidos_respiratorios_disminuidos">Ruidos respiratorios disminuidos</option>
+    <option value="ruidos_respiratorios_ausentes">Ruidos respiratorios ausentes</option>
+    <option value="estertores_sibilancias">Estertores/sibilancias</option>
+</select>
+
+         
+             <div class="input-field">
+                <label>Presencia de pulsos</label>
+                <select name="presencia_pulsos">
+                    <option style="font-size: 12px;" disabled selected>Selecciona una Opción</option>
+                    <option value="carotideo">Carotideo</option>
+                    <option value="radial">Radial</option>
+                    <option value="paro_cardiorrespiratorio">Paro cardiorrespiratorio</option>
+                </select>
+            </div>
+            
+         
+             <label>Piel</label>
+<select name="piel">
+    <option disabled selected>Selecciona una Opción</option>
+    <option value="normal">Normal</option>
+    <option value="palida">Pálida</option>
+    <option value="cianotica">Cianótica</option>
+</select>
+
+         
+<label>Características</label>
+<select name="caracteristicas">
+    <option disabled selected>Selecciona una Opción</option>
+    <option value="normal">Normal</option>
+    <option value="caliente">Caliente</option>
+    <option value="fria">Fría</option>
+    <option value="diaforesis">Diaforesis</option>
+</select>
+
+         
+             <label>Condición</label>
+             <select name="condicion">
+                 <option disabled selected>Selecciona una Opción</option>
+                 <option value="critico">Crítico</option>
+                 <option value="no_critico">No Crítico</option>
+             </select>
+             
+         
+             <label>Estabilidad</label>
+             <select name="estabilidad">
+                 <option disabled selected>Selecciona una Opción</option>
+                 <option value="permeable">Estable</option>
+                 <option value="comprometida">Inestable</option>
+             </select>
+             
+
+             <label>Prioridad</label>
+<select name="prioridad">
+    <option style="font-size: 12px;" disabled selected>Selecciona una Opción</option>
+    <option value="amarillo">Amarillo</option>
+    <option value="rojo">Rojo</option>
+</select>
+
+<label>Prioridad Secundaria</label>
+<select name="prioridad_secundaria">
+    <option disabled selected>Selecciona una Opción</option>
+    <option value="verde">Verde</option>
+    <option value="negro">Negro</option>
+</select>
+
+<span class="title">Datos Adicionales</span>
+<div class="fields">
+    <div class="input-field">
+        <label>Empaquetamiento</label>
+        <select name="empaquetamiento">
+            <option disabled selected>Selecciona una Opción</option>
+            <option value="inmovilizacion_extremidades">Inmovilización de extremidades</option>
+            <option value="empaquetamiento">Empaquetamiento</option>
+        </select>
+    </div>
+    <div class="input-field">
+        <label>Curación y Vendaje</label>
+        <select name="curacion_vendaje">
+            <option disabled selected>Selecciona una Opción</option>
+            <option value="curacion">Curación</option>
+            <option value="bendaje">Vendaje</option>
+        </select>
+    </div>
+    <div class="input-field">
+        <label>Subsecuente</label>
+        <input type="text" name="subsecuente" placeholder="Ingrese datos subsecuentes">
+    </div>
+    <div class="input-field">
+        <label>1° Vez</label>
+        <input type="text" name="1vez" placeholder="Ingrese datos de 1° vez">
+    </div>
+    <div class="input-field">
+        <label>Atropellado</label>
+        <select name="atropellado">
+            <option disabled selected>Selecciona una Opción</option>
+            <option value="motocicleta">Motocicleta</option>
+            <option value="automotor">Automotor</option>
+            <option value="bicicleta">Bicicleta</option>
+            <option value="maquinaria">Maquinaria</option>
+        </select>
+    </div>
+    <div class="input-field">
+        <label>Causa Clínica</label>
+        <select name="causa_clinica">
+            <option disabled selected>Selecciona una Opción</option>
+            <option value="neurologia">Neurología</option>
+            <option value="cardiovascular">Cardiovascular</option>
+            <option value="respiratorio">Respiratorio</option>
+            <option value="metabolico">Metabólico</option>
+            <option value="digestiva">Digestiva</option>
+            <option value="urogenital">Urogenital</option>
+            <option value="ginecobstetrico">Ginecoobstétrico</option>
+            <option value="cognitivo_emocional">Cognitivo/emocional</option>
+            <option value="musculo_esqueletico">Musculo esquelético</option>
+            <option value="infecciosa">Infecciosa</option>
+            <option value="oncologia">Oncológico</option>
+            <option value="otro">Otro</option>
+        </select>
+    </div>
+</div>
+
+<div class="details ID">
+    <span class="title">Otros Datos</span>
+    <div class="fields">
+        <div class="input-field">
+            <label>Especifique</label>
+            <input type="text" name="especifiqueotros" id="especifiqueotros">
+        </div>
+    </div>
+</div>
+
+
+            <!-- Botón para enviar el formulario -->
+            <input type="hidden" name="id" value="{{ registro.id }}"> <!-- Pasar el ID del registro -->
+            <button type="submit">Actualizar Registro</button>
+        </form>
+    </div>
+</body>
+</html>
